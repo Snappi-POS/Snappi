@@ -1,0 +1,2033 @@
+<html lang="en">
+<div id="in-page-channel-node-id" data-channel-name="in_page_channel_C-IBvo"></div>
+
+<head>
+    <style>
+        @keyframes slide-in-one-tap {
+            from {
+                transform: translateY(80px);
+            }
+
+            to {
+                transform: translateY(0px);
+            }
+        }
+
+        .trust-hide-gracefully {
+            opacity: 0;
+        }
+
+        .trust-wallet-one-tap .hidden {
+            display: none;
+        }
+
+        .trust-wallet-one-tap .semibold {
+            font-weight: 500;
+        }
+
+        .trust-wallet-one-tap .binance-plex {
+            font-family: 'Binance';
+        }
+
+        .trust-wallet-one-tap .rounded-full {
+            border-radius: 50%;
+        }
+
+        .trust-wallet-one-tap .flex {
+            display: flex;
+        }
+
+        .trust-wallet-one-tap .flex-col {
+            flex-direction: column;
+        }
+
+        .trust-wallet-one-tap .items-center {
+            align-items: center;
+        }
+
+        .trust-wallet-one-tap .space-between {
+            justify-content: space-between;
+        }
+
+        .trust-wallet-one-tap .justify-center {
+            justify-content: center;
+        }
+
+        .trust-wallet-one-tap .w-full {
+            width: 100%;
+        }
+
+        .trust-wallet-one-tap .box {
+            transition: all 0.5s cubic-bezier(0, 0, 0, 1.43);
+            animation: slide-in-one-tap 0.5s cubic-bezier(0, 0, 0, 1.43);
+            width: 384px;
+            border-radius: 15px;
+            background: #fff;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            z-index: 1020;
+        }
+
+        .trust-wallet-one-tap .header {
+            gap: 15px;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 10px 18px;
+        }
+
+        .trust-wallet-one-tap .header .left-items {
+            gap: 15px;
+        }
+
+        .trust-wallet-one-tap .header .title {
+            color: #1e2329;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 28px;
+        }
+
+        .trust-wallet-one-tap .header .subtitle {
+            color: #474d57;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .trust-wallet-one-tap .header .close {
+            color: #1e2329;
+            cursor: pointer;
+        }
+
+        .trust-wallet-one-tap .body {
+            padding: 9px 18px;
+            gap: 10px;
+        }
+
+        .trust-wallet-one-tap .body .right-items {
+            gap: 10px;
+            width: 100%;
+        }
+
+        .trust-wallet-one-tap .body .right-items .wallet-title {
+            color: #1e2329;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        .trust-wallet-one-tap .body .right-items .wallet-subtitle {
+            color: #474d57;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .trust-wallet-one-tap .connect-indicator {
+            gap: 15px;
+            padding: 8px 0;
+        }
+
+        .trust-wallet-one-tap .connect-indicator .flow-icon {
+            color: #474d57;
+        }
+
+        .trust-wallet-one-tap .loading-color {
+            color: #fff;
+        }
+
+        .trust-wallet-one-tap .button {
+            border-radius: 50px;
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            background-color: rgb(5, 0, 255);
+            border-color: rgb(229, 231, 235);
+            cursor: pointer;
+            text-align: center;
+            height: 45px;
+        }
+
+        .trust-wallet-one-tap .button .button-text {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        .trust-wallet-one-tap .footer {
+            margin: 20px 30px;
+        }
+
+        .trust-wallet-one-tap .check-icon {
+            color: #fff;
+        }
+
+        @font-face {
+            font-family: 'Binance';
+            src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Regular.otf) format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Binance';
+            src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Medium.otf) format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Binance';
+            src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-SemiBold.otf) format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL2FwcC9zcmMvb25lVGFwL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFO0lBQ0UsMkJBQTJCO0VBQzdCO0VBQ0E7SUFDRSwwQkFBMEI7RUFDNUI7QUFDRjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFHRTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLGdCQUFnQjtFQUNsQjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLGtCQUFrQjtFQUNwQjs7QUFFQTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7QUFFQTtJQUNFLDhCQUE4QjtFQUNoQzs7QUFFQTtJQUNFLHVCQUF1QjtFQUN6Qjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFFQTtJQUNFLGdEQUFnRDtJQUNoRCw0REFBNEQ7SUFDNUQsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsK0NBQStDO0lBQy9DLGVBQWU7SUFDZixXQUFXO0lBQ1gsWUFBWTtJQUNaLGFBQWE7RUFDZjs7QUFFQTtJQUNFLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsa0JBQWtCO0VBdUJwQjs7QUFyQkU7TUFDRSxTQUFTO0lBQ1g7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixpQkFBaUI7SUFDbkI7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGlCQUFpQjtJQUNuQjs7QUFFQTtNQUNFLGNBQWM7TUFDZCxlQUFlO0lBQ2pCOztBQUdGO0lBQ0UsaUJBQWlCO0lBQ2pCLFNBQVM7RUFtQlg7O0FBakJFO01BQ0UsU0FBUztNQUNULFdBQVc7SUFjYjs7QUFaRTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsZ0JBQWdCO1FBQ2hCLGlCQUFpQjtNQUNuQjs7QUFFQTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsaUJBQWlCO01BQ25COztBQUlKO0lBQ0UsU0FBUztJQUNULGNBQWM7RUFLaEI7O0FBSEU7TUFDRSxjQUFjO0lBQ2hCOztBQUdGO0lBQ0UsV0FBVztFQUNiOztBQUVBO0lBQ0UsbUJBQW1CO0lBQ25CLDhCQUE4QjtJQUM5QixtQkFBbUI7SUFDbkIsZ0NBQWdDO0lBQ2hDLGdDQUFnQztJQUNoQyxlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLFlBQVk7RUFRZDs7QUFORTtNQUNFLFdBQVc7TUFDWCxlQUFlO01BQ2YsZ0JBQWdCO01BQ2hCLGlCQUFpQjtJQUNuQjs7QUFHRjtJQUNFLGlCQUFpQjtFQUNuQjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFHRjtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMEU7RUFDMUUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBeUU7RUFDekUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMkU7RUFDM0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQiIsInNvdXJjZXNDb250ZW50IjpbIkBrZXlmcmFtZXMgc2xpZGUtaW4tb25lLXRhcCB7XG4gIGZyb20ge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSg4MHB4KTtcbiAgfVxuICB0byB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDBweCk7XG4gIH1cbn1cblxuLnRydXN0LWhpZGUtZ3JhY2VmdWxseSB7XG4gIG9wYWNpdHk6IDA7XG59XG5cbi50cnVzdC13YWxsZXQtb25lLXRhcCB7XG4gIC5oaWRkZW4ge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cblxuICAuc2VtaWJvbGQge1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIH1cblxuICAuYmluYW5jZS1wbGV4IHtcbiAgICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICB9XG5cbiAgLnJvdW5kZWQtZnVsbCB7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICB9XG5cbiAgLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAuZmxleC1jb2wge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIH1cblxuICAuaXRlbXMtY2VudGVyIHtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB9XG5cbiAgLnNwYWNlLWJldHdlZW4ge1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgfVxuXG4gIC5qdXN0aWZ5LWNlbnRlciB7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIH1cblxuICAudy1mdWxsIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgfVxuXG4gIC5ib3gge1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjVzIGN1YmljLWJlemllcigwLCAwLCAwLCAxLjQzKTtcbiAgICBhbmltYXRpb246IHNsaWRlLWluLW9uZS10YXAgMC41cyBjdWJpYy1iZXppZXIoMCwgMCwgMCwgMS40Myk7XG4gICAgd2lkdGg6IDM4NHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBib3gtc2hhZG93OiAwcHggMnB4IDRweCAwcHggcmdiYSgwLCAwLCAwLCAwLjI1KTtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgcmlnaHQ6IDMwcHg7XG4gICAgYm90dG9tOiAzMHB4O1xuICAgIHotaW5kZXg6IDEwMjA7XG4gIH1cblxuICAuaGVhZGVyIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlNmU2ZTY7XG4gICAgcGFkZGluZzogMTBweCAxOHB4O1xuXG4gICAgLmxlZnQtaXRlbXMge1xuICAgICAgZ2FwOiAxNXB4O1xuICAgIH1cblxuICAgIC50aXRsZSB7XG4gICAgICBjb2xvcjogIzFlMjMyOTtcbiAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICBsaW5lLWhlaWdodDogMjhweDtcbiAgICB9XG5cbiAgICAuc3VidGl0bGUge1xuICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICB9XG5cbiAgICAuY2xvc2Uge1xuICAgICAgY29sb3I6ICMxZTIzMjk7XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgfVxuICB9XG5cbiAgLmJvZHkge1xuICAgIHBhZGRpbmc6IDlweCAxOHB4O1xuICAgIGdhcDogMTBweDtcblxuICAgIC5yaWdodC1pdGVtcyB7XG4gICAgICBnYXA6IDEwcHg7XG4gICAgICB3aWR0aDogMTAwJTtcblxuICAgICAgLndhbGxldC10aXRsZSB7XG4gICAgICAgIGNvbG9yOiAjMWUyMzI5O1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xuICAgICAgfVxuXG4gICAgICAud2FsbGV0LXN1YnRpdGxlIHtcbiAgICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgLmNvbm5lY3QtaW5kaWNhdG9yIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgcGFkZGluZzogOHB4IDA7XG5cbiAgICAuZmxvdy1pY29uIHtcbiAgICAgIGNvbG9yOiAjNDc0ZDU3O1xuICAgIH1cbiAgfVxuXG4gIC5sb2FkaW5nLWNvbG9yIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgfVxuXG4gIC5idXR0b24ge1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgb3V0bGluZTogMnB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIG91dGxpbmUtb2Zmc2V0OiAycHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDUsIDAsIDI1NSk7XG4gICAgYm9yZGVyLWNvbG9yOiByZ2IoMjI5LCAyMzEsIDIzNSk7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBoZWlnaHQ6IDQ1cHg7XG5cbiAgICAuYnV0dG9uLXRleHQge1xuICAgICAgY29sb3I6ICNmZmY7XG4gICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgfVxuICB9XG5cbiAgLmZvb3RlciB7XG4gICAgbWFyZ2luOiAyMHB4IDMwcHg7XG4gIH1cblxuICAuY2hlY2staWNvbiB7XG4gICAgY29sb3I6ICNmZmY7XG4gIH1cbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnQmluYW5jZSc7XG4gIHNyYzogdXJsKCcuL2ZvbnRzL2JpbmFuY2VQbGV4L0JpbmFuY2VQbGV4LVJlZ3VsYXIub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNDAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1NZWRpdW0ub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNTAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1TZW1pQm9sZC5vdGYnKSBmb3JtYXQoJ29wZW50eXBlJyk7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */
+    </style>
+</head>
+
+<body>
+    <header class="hero container-fluid">
+        <div class="hero__content container mx-auto">
+            <!-- I'm putting the nav inside this "fixed-nav-container" to fix some issues happens on scroll -->
+            <div class="fixed-nav-container">
+                <nav class="hero-nav position-relative container mx-auto px-0">
+                    <ul class="nav w-100 list-unstyled align-items-center p-0">
+                        <li class="hero-nav__item">
+                            <a href="https://ovendor.shop">
+                                <img class="hero-nav__logo" src="https://ovendor.shop/uploads/cms/logo.png"
+                                    change-src-onscroll="https://ovendor.shop/uploads/cms/logo.png" alt="logo"
+                                    loading="lazy">
+                            </a>
+                            <!-- Don't remove this empty span -->
+                            <span class="mx-2"></span>
+                        </li>
+                        <li id="hero-menu" class="flex-grow-1 hero__nav-list hero__nav-list--mobile-menu ft-menu">
+                            <ul
+                                class="hero__menu-content nav flex-column flex-lg-row ft-menu__slider animated list-unstyled p-2 p-lg-0">
+                                <li class="flex-grow-1">
+                                    <ul
+                                        class="nav nav--lg-side flex-column-reverse flex-lg-row-reverse list-unstyled align-items-center p-0">
+                                        <li class="flex-grow-1">
+                                            <ul
+                                                class="nav nav--lg-side flex-column-reverse flex-lg-row-reverse list-unstyled align-items-center p-0">
+                                                <li class="hero-nav__item">
+                                                    <a href="https://ovendor.shop/public/business/register"
+                                                        target="_blank" class="btn btn-primary">
+                                                        Try For Free
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="hero-nav__item">
+                                            <a href="https://ovendor.shop/login" class="hero-nav__link">
+                                                <strong>
+                                                    Login </strong>
+                                            </a>
+                                        </li>
+
+                                        <li class="hero-nav__item">
+                                            <a href="https://ovendor.shop/c/contact-us" class="hero-nav__link">Contact
+                                                us</a>
+                                        </li>
+                                        <li class="hero-nav__item">
+                                            <a href="https://ovendor.shop/pricing" class="hero-nav__link">
+                                                Pricing </a>
+                                        </li>
+                                        <li class="hero-nav__item">
+                                            <a href="https://ovendor.shop" class="hero-nav__link">
+                                                Home
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <button close-nav-menu="" class="ft-menu__close-btn animated">
+                                <svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                        clip-rule="evenodd"></path>
+                                    <path fill-rule="evenodd"
+                                        d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="hero-nav__item d-lg-none d-flex flex-row-reverse">
+                            <button open-nav-menu="" class="text-center px-2">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div> <!------------------------------>
+            <!--Hero---------------->
+            <!------------------------------>
+            <div class="hero__body col-lg-7 px-0">
+                <h1 class="hero__title mb-4">
+                    Smart automation for your business, without breaking the bank.
+                </h1>
+                <div class="hero__paragraph mx-0 mb-4">
+                    <p>One smart software. All the tools — POS, invoicing, inventory &amp; service management — to power
+                        your business growth.</p>
+                </div>
+                <div class="hero__btns-container">
+                    <a class="hero__btn btn btn-primary mb-2 mb-lg-0 mx-1 mx-lg-2"
+                        href="https://ovendor.shop/public/business/register">
+                        Start your Free Trial
+                    </a>
+                    <!-- <a class="hero__btn btn btn-secondary mb-2 mb-lg-0 mx-1 mx-lg-2" href="https://ovendor.shop/business/register">
+                    Get access for $4.9
+                </a> -->
+                </div>
+            </div>
+        </div>
+        <div class="hero__row d-block d-lg-flex row">
+            <div class="hero__empty-column col-lg-7"></div>
+            <div class="hero__image-column col-lg-5"
+                style="background-image: url(https://ovendor.shop/uploads/cms/1751874606_OGAMANAJA%20FRONT%20PAGE%20IMAGE%20new%20main.png);">
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- custom metas -->
+
+    <meta name="description" content="">
+
+    <!-- font awesome 5 free -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Your Custom CSS file that will include your blocks CSS -->
+    <link rel="stylesheet" type="text/css" href="https://ovendor.shop/modules/cms/css/cms.css?v=670">
+    <script src="https://unpkg.com/tua-body-scroll-lock"></script>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="cWmmDx2Px8lxWLkmm79Kxv2SoBTLk8xhRuXWcTPN">
+    <title>Home | OGAMANAJA</title>
+    <!-- custom css code -->
+
+    <!-- in app chat widget css -->
+    <style type="text/css">
+        /* Click To chatWidget Main Container */
+        .cp-style1 {
+            display: inline-block;
+            position: fixed;
+            letter-spacing: 0.1px;
+            font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+            z-index: 9999;
+        }
+
+        .cp-right-bottom {
+            bottom: 1em;
+            right: 1em;
+            float: right;
+        }
+
+        /* Floating Panel Container */
+        .cp-style1 .cp-panel {
+            display: none;
+            padding: 15px 10px;
+            margin-bottom: 5%;
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 7px rgba(12, 12, 12, 0.18);
+        }
+
+        .cp-style1 .cp-panel .cp-list {
+            display: inline-flex;
+            padding: 7px 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .cp-style1 .cp-panel .cp-list:hover {
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px 0px #0000002e;
+        }
+
+        .cp-style1 .cp-list .cp-image {
+            display: flex;
+            width: 60px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .cp-style1 .cp-image img {
+            margin-top: 3px;
+            width: 27px;
+            height: 27px;
+        }
+
+        .cp-style1 .cp-image img,
+        .cp-style1 .cp-panel .cp-list:hover img {
+            -webkit-transition: all .3s ease-in-out;
+            -moz-transition: all .3s ease-in-out;
+            -ms-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+        }
+
+        .cp-style1 .cp-panel .cp-content {
+            padding-left: 0;
+        }
+
+        .cp-style1 .cp-content h2 {
+            padding-top: 0;
+            margin-bottom: 0;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 18px;
+        }
+
+        .cp-style1 .cp-content p {
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+
+        /* Right Bottom Floating Button */
+        .cp-style1 .cp-button {
+            padding: 12px;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            border: 1px solid #fff;
+            box-shadow: 0 0 10px rgba(12, 12, 12, 0.3);
+            cursor: pointer;
+        }
+
+        .cp-style1 .cp-button:hover {
+            box-shadow: 0px 0px 10px rgba(12, 12, 12, 0.5);
+            -webkit-transition: all .3s ease-in-out;
+            -moz-transition: all .3s ease-in-out;
+            -ms-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+        }
+
+        .cp-style1 .cp-button .fa-comments-o {
+            font-size: 30px;
+        }
+
+        /* Floating Button Forward Rotation */
+        .rotateForward {
+            animation-name: rotateF;
+            animation-duration: 0.65s;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes rotateF {
+            from {
+                transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        /* Floating Button Backward Rotation */
+        .rotateBackward {
+            animation-name: rotateB;
+            animation-duration: 0.65s;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes rotateB {
+            from {
+                transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+        }
+
+        /* Media Css for Smaller Device */
+        @media(max-width: 576px) {
+
+            .cp-style1 .cp-panel {
+                width: 290px;
+            }
+        }
+
+        /* Medium devices (landscape tablets, 0px and 1280px) */
+        @media all and (max-width: 1280px) and (min-width: 0px) {
+
+            .cp-right-bottom {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .cp-style1 .cp-panel {
+                margin-bottom: 5px;
+            }
+
+            .cp-style1 .cp-panel {
+                padding: 10px;
+            }
+
+            .cp-style1 .cp-panel .cp-list {
+                padding: 5px 0;
+            }
+        }
+    </style>
+    <style type="text/css">
+        /*======================================================
+[Table of Contents For Green Gradiant Color]
+* Click To chatWidget Main Layout CSS
+* Click To chatWidget Sidebar Togle CSS
+* Click To chatWidget Style1 CSS
+* Click To chatWidget Style2 CSS
+* Click To chatWidget Style3 CSS
+* Click To chatWidget Style4 CSS
+* Click To chatWidget Style5 CSS
+* Click To chatWidget Style6 CSS
+* Click To chatWidget Style7 CSS
+* Click To chatWidget Style8 CSS
+* Click To chatWidget Style9 CSS
+* Click To chatWidget Style10 CSS
+========================================================*/
+
+        /*==================================================
+    Click To chatWidget Main Layout CSS
+====================================================*/
+        a.cp-list {
+            color: unset !important;
+            text-decoration: none !important;
+        }
+
+        .layout .layout-features i {
+            color: #09e072;
+        }
+
+        .layout .layout-funcation .layout-funcation-odd {
+            background: #eee;
+        }
+
+        /* Common CSS */
+        .layout .title,
+        .layout .wrapper .div-dot:after {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        .layout .layout-heading h2,
+        .layout .layout-heading p {
+            color: #fff;
+        }
+
+        .layout .layout-style-title h3,
+        .layout .layout-button-title h3,
+        .layout .layout-features-title h3,
+        .layout .layout-funcation-title h3,
+        .layout .layout-features h4,
+        .layout .layout-funcation h4 {
+            color: #555;
+        }
+
+        .layout .layout-style-title p,
+        .layout .layout-button-title p,
+        .layout .layout-features-title p,
+        .layout .layout-funcation-title p,
+        .layout .layout-features p,
+        .layout .layout-funcation p {
+            color: #8c8c8c;
+        }
+
+        /*===========================================================
+    Click To chatWidget Sidebar Togle CSS (Left Slide Panel)
+=============================================================*/
+
+        .cp-header {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /* Common CSS */
+        .cp-setting .icon,
+        .cp-setting .link a {
+            color: #555;
+        }
+
+        .cp-setting .icon i,
+        .cp-setting .link a:hover {
+            color: #09e072;
+        }
+
+        /*==================================================
+    Start Click To chatWidget Style1 CSS
+====================================================*/
+
+        .cp-style1 .cp-panel {
+            background: #fff;
+        }
+
+        /* Common CSS */
+        .cp-style1 .cp-panel,
+        .cp-style1 .cp-button {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        .cp-style1 .cp-panel,
+        .cp-style1 .cp-panel h2,
+        .cp-style1 .cp-panel p,
+        .cp-style1 .cp-button i {
+            color: #fff;
+        }
+
+        /*==================================================
+    End Click To chatWidget Style1 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style2 CSS
+====================================================*/
+
+        .cp-style2 .cp-list:hover .cp-content {
+            background: #fff;
+        }
+
+        .cp-style2 .cp-list .cp-content h2 {
+            color: #383838;
+        }
+
+        .cp-style2 .cp-list .cp-content p {
+            color: #8c8c8c;
+        }
+
+        .cp-style2 .cp-list .cp-image {
+            border: 2px solid #fff;
+        }
+
+        .cp-style2 .cp-list .cp-image {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /*==================================================
+    End Click To chatWidget Style2 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style3 CSS
+====================================================*/
+
+        /* Common CSS */
+        .cp-style3 .cp-control .cp-btn,
+        .cp-style3 .cp-control .cp-right,
+        .cp-style3 .cp-control .cp-left {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /*==================================================
+    End Click To chatWidget Style3 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style4 CSS
+====================================================*/
+
+        /* Common CSS */
+        .cp-style4 .fa-comments-o,
+        .cp-style4 .fa-times {
+            color: #fff;
+        }
+
+        .cp-style4 .cp-toggle-1,
+        .cp-style4 .cp-toggle-2,
+        .cp-style4 .cp-menu {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /*==================================================
+    End Click To chatWidget Style4 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style5 CSS
+====================================================*/
+
+        .cp-style5 .cp-chat-button {
+            border: 2px solid #fff;
+        }
+
+        /* Common CSS */
+        .cp-style5 .menu-item a,
+        .cp-style5 .menu-item a:hover,
+        .cp-style5 .cp-chat-button .cp-button .fa-comments-o,
+        .cp-style5 .cp-chat-button .cp-button .fa-times {
+            color: #fff;
+        }
+
+        .cp-style5 .cp-chat-button .cp-button,
+        .cp-style5 .menu-item a {
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /*==================================================
+    End Click To chatWidget Style5 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style6 CSS
+====================================================*/
+
+        .cp-style6 .cp-menu {
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        .cp-style6 .cp-button {
+            color: #fff;
+        }
+
+        /*==================================================
+    End Click To chatWidget Style6 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style7 CSS
+====================================================*/
+
+        /* Common CSS */
+        .cp-style7 .cp-panel .cp-list,
+        .cp-style7 .cp-panel .cp-button {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        .cp-style7 .cp-panel .cp-button,
+        .cp-style7 .cp-panel .cp-button:hover {
+            color: #fff;
+        }
+
+        /*==================================================
+    End Click To chatWidget Style7 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style8 CSS
+====================================================*/
+
+        /* Common CSS */
+        .cp-style8 .cp-panel .cp-button i,
+        .cp-style8 .cp-panel ul .cp-list {
+            color: #fff;
+        }
+
+        .cp-style8 .cp-panel .cp-button,
+        .cp-style8 .cp-list .cp-img-cont,
+        .cp-style8 .cp-list .cp-user-info {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /*==================================================
+    End Click To chatWidget Style8 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style9 CSS
+====================================================*/
+
+        .cp-style9 .cp-button {
+            background: #26C281;
+        }
+
+        .cp-style9 .cp-panel {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        /* Common CSS */
+        .cp-style9 .cp-panel h2,
+        .cp-style9 .cp-panel p,
+        .cp-style9 .cp-button i {
+            color: #fff;
+        }
+
+        /*==================================================
+    End Click To chatWidget Style9 CSS
+====================================================*/
+
+        /*==================================================
+    Start Click To chatWidget Style10 CSS
+====================================================*/
+
+        .cp-style10 .cp-panel {
+            background: #fff;
+        }
+
+        /* Common CSS */
+        .cp-style10 .cp-panel,
+        .cp-style10 .cp-button {
+            background: -webkit-linear-gradient(to right, #26C281, #09e072);
+            background: -moz-linear-gradient(to right, #26C281, #09e072);
+            background: -ms-linear-gradient(to right, #26C281, #09e072);
+            background: -o-linear-gradient(to right, #26C281, #09e072);
+            background: linear-gradient(to right, #26C281, #09e072);
+        }
+
+        .cp-style10 .cp-panel,
+        .cp-style10 .cp-panel h2,
+        .cp-style10 .cp-panel p,
+        .cp-style10 .cp-button i {
+            color: #fff;
+        }
+
+        /*==================================================
+    End Click To chatWidget Style10 CSS
+====================================================*/
+    </style>
+    <style type="text/css">
+        .far.fa-comments {
+            padding-top: 3px !important;
+            font-size: 25px !important;
+        }
+    </style>
+
+
+    <!------------------------------>
+    <!--Features---------------->
+    <!------------------------------>
+    <div class="block-1 space-between-blocks" data-sticky-container="" id="features">
+        <div class="container">
+            <div class="row justify-content-center flex-column-reverse flex-lg-row px-2 mx-auto" id="block__container">
+                <div class="col-lg-4 col-xl-6 mb-5 pe-lg-5">
+                    <div sticky="" data-margin-top="30px" style="">
+                        <h1 class="block__title--big mb-3">
+                            Smart Features to Boost 🚀 Your Business Like Oga Wey Sabi
+                        </h1>
+                        <p class="block__paragraph--big mb-5">
+                        </p>
+                        <p data-start="185" data-end="347"><strong data-start="185" data-end="244">Business growth dey
+                                fast these days — no time to slack.</strong><br data-start="244" data-end="247">That’s
+                            why <strong data-start="258" data-end="271">Ogamanaja</strong> built a powerful cloud-based
+                            POS system to help you stay ahead of the game.</p>
+                        <p data-start="349" data-end="499">With <strong data-start="354" data-end="391">Ogamanaja – POS
+                                for Ogas wey sabi</strong>, you get an easy, reliable way to manage your sales, stock,
+                            and business growth — all from your fingertips.</p>
+                        <p data-start="501" data-end="698">Whether you dey run shop, restaurant, or big enterprise, the
+                            right software fit be your business lifesaver.<br data-start="608" data-end="611"><strong
+                                data-start="611" data-end="624">Ogamanaja</strong> no just help you manage — e dey
+                            empower you to grow, expand, and succeed.</p>
+                        <p data-start="700" data-end="770">Make you no carry last — upgrade your hustle with <strong
+                                data-start="750" data-end="763">Ogamanaja</strong> today.</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-xl-6 gx-xxl-5">
+                    <div class="row">
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-cloud fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    Access Anywhere!
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Check your business data from anywhere, anytime.
+                                    See live updates in realtime
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-check-double fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    No Installation
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    No software to install, No hardware dependency. Just open browser &amp; start using.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-sitemap fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    MultiBranches &amp; Warehouse
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Manage stock of multiple branches in one place effortlessly &amp; real-time.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-user-lock fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    User access limit
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Powerful user Role &amp; Permission management to limit employees access to business
+                                    data
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-cubes fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    Stock Management
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Manage stocks with from multiple locations, stock expiry, lot number, stock history
+                                    &amp; much more.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-wrench fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    Service Management
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Manage &amp; easily invoice for services. Also dedicated repair service management
+                                    features to schedule &amp; deliver services on time
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-users fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    HR Management
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    With HR management easily track daily attendance, shift management, leaves, payroll,
+                                    Holidays, Departments, &amp; Designations
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-handshake fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    Customer Management
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    CRM module help you to track leads lifecycle, followup with leads, sources,
+                                    followup, launch campaigns, proposals and lot more
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-hand-peace fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    Simplified Interface
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Simple to use interface to get work done in few clicks. Save your time &amp; make it
+                                    easy for staffs to use.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2-1rem">
+                            <div class="card-1">
+                                <span class="fr-icon">
+                                    <i class="fas fa-chart-line fa-lg"></i>
+                                </span>
+                                <h3 class="card-1__title mb-2">
+                                    Reports
+                                </h3>
+                                <p class="card-1__paragraph">
+                                    Comes inbuilt with lot of report to help business owners analyse every revenue,
+                                    inventory, payments &amp; human resource.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------>
+    <!--Industries---------------->
+    <!------------------------------>
+    <div class="block-2 space-between-blocks overflow-hidden">
+        <div class="container-xl px-lg-4 px-xl-0 position-relative">
+            <div class="row align-items-center mx-auto" id="block__container">
+                <div class="col-lg-5 col-xl-6 position-relative" style="z-index: 2">
+                    <h1 class="block__title block__title--big mb-4">
+                        OGAMANAJA DEY FOR YOU
+                    </h1>
+                    <p class="block__paragraph mb-3">
+                    </p>
+                    <p><strong data-start="120" data-end="204">Looking for the perfect business management software?
+                            You’re in the right place.</strong><br data-start="204" data-end="207">Our clean, modern,
+                        and modular design is built to fit your business perfectly — no matter your size or industry.
+                    </p>
+                    <p></p>
+                    <div class="mb-5 mt-4 mb-lg-0 mt-lg-5">
+                        <a href="https://ovendor.shop/public/business/register" class="btn btn-primary">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                <div id="unique-id-2"
+                    class="splide block-2__splide col-lg-7 col-xl-6 is-initialized splide--loop splide--ttb is-active"
+                    role="region" aria-roledescription="carousel">
+                    <div class="block-2__custom-arrows splide__arrows splide__arrows--ttb">
+                        <button class="block-2__splide-btn splide__arrow splide__arrow--prev d-none"
+                            aria-label="Previous slide" aria-controls="unique-id-2-track"></button>
+                        <button class="block-2__splide-btn splide__arrow splide__arrow--next" aria-label="Next slide"
+                            aria-controls="unique-id-2-track">
+                            <svg width="1.5rem" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="splide__track splide__track--loop splide__track--ttb" id="unique-id-2-track"
+                        style="padding-top: 0px; padding-bottom: 0px; height: calc(1422.84px);" aria-live="polite"
+                        aria-atomic="true">
+                        <div class="splide__list" id="unique-id-2-list" role="presentation"
+                            style="transform: translateY(371.086px);">
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone is-visible"
+                                id="unique-id-2-clone01" role="group" aria-roledescription="slide" aria-label="1 of 6"
+                                style="height: calc(66.6667%);">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-store-alt fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Departmental Store
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Looking for a software solution that can help you manage and sell all of your
+                                        essential items in one place? Look no further than our one-stop departmental
+                                        store software. Whether you need to sell clothes, shoes, bags, or any other type
+                                        of item, our software has you covered. Plus, our easy-to-use interface makes it
+                                        simple to get started selling right away. So why wait? Get started today!
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone is-active"
+                                id="unique-id-2-clone02" role="group" aria-roledescription="slide" aria-label="2 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-store fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Retail &amp; Wholesale
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        A complete suite of features to manage both retail &amp; wholesales stores. Set
+                                        multiple prices for different customer segments or different business locations.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone03"
+                                role="group" aria-roledescription="slide" aria-label="3 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-notes-medical fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Pharmacy
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Our software is perfect for any pharmaceutical company. You can set product
+                                        expiration dates and lot numbers, and sell in different units of measure. Stop
+                                        selling expired &amp; to-be-expired items to customers. Check details reports on
+                                        stock expiry by lot numbers
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone04"
+                                role="group" aria-roledescription="slide" aria-label="4 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-prescription-bottle fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Liquor
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Easy to use for every liquor shop. Sell in ml of simple sell the bottle, you can
+                                        easily manage them.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone05"
+                                role="group" aria-roledescription="slide" aria-label="5 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-mobile-alt fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Mobile &amp; Electronics
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Record inventory serial number, sell items with particular serial number,
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone06"
+                                role="group" aria-roledescription="slide" aria-label="6 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-wrench fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Repair Shop
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        A complete suite of features to manage repair business, create job sheet, assign
+                                        job sheet to technician, repair status, convert job sheet to invoices. Self link
+                                        for customers to check repair progress
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex is-prev" id="unique-id-2-slide01" role="group"
+                                aria-roledescription="slide" aria-label="1 of 6" style="height: calc(66.6667%);"
+                                aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-store-alt fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Departmental Store
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Looking for a software solution that can help you manage and sell all of your
+                                        essential items in one place? Look no further than our one-stop departmental
+                                        store software. Whether you need to sell clothes, shoes, bags, or any other type
+                                        of item, our software has you covered. Plus, our easy-to-use interface makes it
+                                        simple to get started selling right away. So why wait? Get started today!
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex is-active" id="unique-id-2-slide02"
+                                role="group" aria-roledescription="slide" aria-label="2 of 6"
+                                style="height: calc(66.6667%);">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-store fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Retail &amp; Wholesale
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        A complete suite of features to manage both retail &amp; wholesales stores. Set
+                                        multiple prices for different customer segments or different business locations.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex is-next" id="unique-id-2-slide03" role="group"
+                                aria-roledescription="slide" aria-label="3 of 6" style="height: calc(66.6667%);"
+                                aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-notes-medical fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Pharmacy
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Our software is perfect for any pharmaceutical company. You can set product
+                                        expiration dates and lot numbers, and sell in different units of measure. Stop
+                                        selling expired &amp; to-be-expired items to customers. Check details reports on
+                                        stock expiry by lot numbers
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex" id="unique-id-2-slide04" role="group"
+                                aria-roledescription="slide" aria-label="4 of 6" style="height: calc(66.6667%);"
+                                aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-prescription-bottle fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Liquor
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Easy to use for every liquor shop. Sell in ml of simple sell the bottle, you can
+                                        easily manage them.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex" id="unique-id-2-slide05" role="group"
+                                aria-roledescription="slide" aria-label="5 of 6" style="height: calc(66.6667%);"
+                                aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-mobile-alt fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Mobile &amp; Electronics
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Record inventory serial number, sell items with particular serial number,
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex" id="unique-id-2-slide06" role="group"
+                                aria-roledescription="slide" aria-label="6 of 6" style="height: calc(66.6667%);"
+                                aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-wrench fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Repair Shop
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        A complete suite of features to manage repair business, create job sheet, assign
+                                        job sheet to technician, repair status, convert job sheet to invoices. Self link
+                                        for customers to check repair progress
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone07"
+                                role="group" aria-roledescription="slide" aria-label="1 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-store-alt fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Departmental Store
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Looking for a software solution that can help you manage and sell all of your
+                                        essential items in one place? Look no further than our one-stop departmental
+                                        store software. Whether you need to sell clothes, shoes, bags, or any other type
+                                        of item, our software has you covered. Plus, our easy-to-use interface makes it
+                                        simple to get started selling right away. So why wait? Get started today!
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone is-active"
+                                id="unique-id-2-clone08" role="group" aria-roledescription="slide" aria-label="2 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-store fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Retail &amp; Wholesale
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        A complete suite of features to manage both retail &amp; wholesales stores. Set
+                                        multiple prices for different customer segments or different business locations.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone09"
+                                role="group" aria-roledescription="slide" aria-label="3 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-notes-medical fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Pharmacy
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Our software is perfect for any pharmaceutical company. You can set product
+                                        expiration dates and lot numbers, and sell in different units of measure. Stop
+                                        selling expired &amp; to-be-expired items to customers. Check details reports on
+                                        stock expiry by lot numbers
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone10"
+                                role="group" aria-roledescription="slide" aria-label="4 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-prescription-bottle fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Liquor
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Easy to use for every liquor shop. Sell in ml of simple sell the bottle, you can
+                                        easily manage them.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone11"
+                                role="group" aria-roledescription="slide" aria-label="5 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-mobile-alt fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Mobile &amp; Electronics
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        Record inventory serial number, sell items with particular serial number,
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="splide__slide block-2-card d-flex splide__slide--clone" id="unique-id-2-clone12"
+                                role="group" aria-roledescription="slide" aria-label="6 of 6"
+                                style="height: calc(66.6667%);" aria-hidden="true">
+                                <div>
+                                    <span class="fr-icon fr-icon--large mx-auto">
+                                        <i class="fas fa-wrench fa-lg"></i>
+                                    </span>
+                                </div>
+                                <div class="pe-3 pe-lg-4"></div>
+                                <div>
+                                    <h3 class="block-2-card__title mb-2">
+                                        Repair Shop
+                                    </h3>
+                                    <p class="block-2-card__paragraph">
+                                        A complete suite of features to manage repair business, create job sheet, assign
+                                        job sheet to technician, repair status, convert job sheet to invoices. Self link
+                                        for customers to check repair progress
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-2__svg-shapes">
+                <svg class="block-2__dots-svg--left" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <pattern id="pattern" width="19" height="19" viewBox="0 0 40 40" patternUnits="userSpaceOnUse"
+                            patternTransform="rotate(90)">
+                            <rect id="pattern-background" x="0" y="0" width="400%" height="400%" fill="transparent">
+                            </rect>
+                            <circle cx="20" cy="20" r="5" fill="currentColor" stroke="currentColor" stroke-width="0">
+                            </circle>
+                            <circle cx="20" cy="20" r="0" fill="currentColor" stroke="currentColor" stroke-width="0">
+                            </circle>
+                        </pattern>
+                    </defs>
+                    <rect fill="url(#pattern)" height="100%" width="100%" y="0" x="0"></rect>
+                </svg>
+                <svg class="block-2__dots-svg--right" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <pattern id="pattern" width="19" height="19" viewBox="0 0 40 40" patternUnits="userSpaceOnUse"
+                            patternTransform="rotate(90)">
+                            <rect id="pattern-background" x="0" y="0" width="400%" height="400%" fill="transparent">
+                            </rect>
+                            <circle cx="20" cy="20" r="5" fill="currentColor" stroke="currentColor" stroke-width="0">
+                            </circle>
+                            <circle cx="20" cy="20" r="0" fill="currentColor" stroke="currentColor" stroke-width="0">
+                            </circle>
+                        </pattern>
+                    </defs>
+                    <rect fill="url(#pattern)" height="100%" width="100%" y="0" x="0"></rect>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------>
+    <!--Stats---------------->
+    <!------------------------------>
+    <div class="block-38 space-between-blocks">
+        <div class="container">
+            <!-- HEADER -->
+            <div class="col-lg-9 mx-auto text-center px-0 mb-5">
+                <h1 class="block__title--big mb-3">
+                    POS's Stats &amp; Numbers
+                </h1>
+                <p class="block__paragraph--big mb-0 mx-3">
+                    More &amp; More businesses are adopting our cloud-based business management solution
+                </p>
+            </div>
+            <ul class="stats row list-unstyled text-center mx-auto p-4 p-lg-5">
+                <li class="stats__li col-6 col-lg-3 p-0">
+                    <span class="stats__number">
+                        75
+                    </span>
+                    <p class="stats__text">
+                        REGISTERED BUSINESSES
+                    </p>
+                </li>
+                <li class="stats__li col-6 col-lg-3 p-0">
+                    <span class="stats__number">
+                        400+
+                    </span>
+                    <p class="stats__text">
+                        DAILY USERS
+                    </p>
+                </li>
+                <li class="stats__li col-6 col-lg-3 p-0">
+                    <span class="stats__number">
+                        50K
+                    </span>
+                    <p class="stats__text">
+                        INVOICES CREATED
+                    </p>
+                </li>
+                <li class="stats__li col-6 col-lg-3 p-0">
+                    <span class="stats__number">
+                        126+
+                    </span>
+                    <p class="stats__text">
+                        ONLINE RESOURCES
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!------------------------------>
+    <!--Testimonial---------------->
+    <!------------------------------>
+    <div class="block-20 space-between-blocks">
+        <div class="container">
+            <div class="col-lg-9 mx-auto text-center px-0 mb-5">
+                <p class="block__paragraph--big">We have happy customers</p>
+                <h1 class="block__title--big pb-5">What They Says About Us</h1>
+            </div>
+            <div class="row px-2 pt-4 mx-xxl-auto" id="block__container">
+                <div class="col-lg-4 mb-1">
+                    <div class="testimonial-card-1">
+                        <div class="block-20-person">
+                            <div class="mb-2">
+                                <img class="block-20-person__avatar"
+                                    src="https://ui-avatars.com/api/?name=Mr Wale Adeniran" loading="lazy">
+                            </div>
+                            <div class="flex-grow-1 d-flex flex-column">
+                                <span class="block-20-person__rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="block-20-person__name my-1">
+                                    Mr Wale Adeniran
+                                </span>
+                                <!-- <span class="block-20-person__info">
+                                        Designation
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="testimonial-card-1__paragraph mb-3">
+                            <p data-start="90" data-end="449"><strong data-start="90" data-end="155">OGAMANAJA has
+                                    become a vital part of our business operations.</strong> It has helped us seamlessly
+                                centralize data from all our warehouses and shops onto one platform, making management
+                                far more efficient. Even as someone who isn't very tech-savvy, I find the admin panel
+                                intuitive and highly customizable—it lets me tailor the system to suit our specific
+                                needs.</p>
+                            <p data-start="451" data-end="664">The detailed reports provide valuable insights into
+                                various areas of the business, helping me make better-informed decisions. OGAMANAJA is
+                                truly a powerful tool for any business looking to stay organized and grow.</p>
+                        </div>
+                        <span class="testimonial-card-1__quote-symbol">
+                            <i class="fas fa-quote-left"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-1">
+                    <div class="testimonial-card-1">
+                        <div class="block-20-person">
+                            <div class="mb-2">
+                                <img class="block-20-person__avatar"
+                                    src="https://ui-avatars.com/api/?name=Mrs Joy Nnamdi" loading="lazy">
+                            </div>
+                            <div class="flex-grow-1 d-flex flex-column">
+                                <span class="block-20-person__rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="block-20-person__name my-1">
+                                    Mrs Joy Nnamdi
+                                </span>
+                                <!-- <span class="block-20-person__info">
+                                        Designation
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="testimonial-card-1__paragraph mb-3">
+                            <p><strong data-start="78" data-end="140">OGAMANAJA has truly transformed the way I run my
+                                    business.</strong> This web-based POS and business management platform makes it
+                                incredibly easy to track inventory, manage customer information, and monitor sales—all
+                                in one place. The installation process was quick and hassle-free, and the user-friendly
+                                interface means I can navigate and operate the system with ease. With OGAMANAJA, I can
+                                now handle almost every aspect of my business from a single platform. It’s an essential
+                                tool for any business owner in Nigeria looking to improve efficiency and stay organized.
+                            </p>
+                        </div>
+                        <span class="testimonial-card-1__quote-symbol">
+                            <i class="fas fa-quote-left"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-1">
+                    <div class="testimonial-card-1">
+                        <div class="block-20-person">
+                            <div class="mb-2">
+                                <img class="block-20-person__avatar"
+                                    src="https://ui-avatars.com/api/?name=Miss Johnson Kate" loading="lazy">
+                            </div>
+                            <div class="flex-grow-1 d-flex flex-column">
+                                <span class="block-20-person__rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="block-20-person__name my-1">
+                                    Miss Johnson Kate
+                                </span>
+                                <!-- <span class="block-20-person__info">
+                                        Designation
+                                    </span> -->
+                            </div>
+                        </div>
+                        <div class="testimonial-card-1__paragraph mb-3">
+                            <p data-start="110" data-end="454"><strong data-start="110" data-end="213">We’ve been using
+                                    OGAMANAJA for some time now, and it has truly transformed how we manage our
+                                    hotel.</strong> From the front desk to housekeeping and inventory, everything is now
+                                streamlined and easy to handle. The interface is simple and intuitive, which made it
+                                easy for our team to get the hang of it quickly—even those who aren’t very tech-savvy.
+                            </p>
+                            <p data-start="456" data-end="676">One of the features we love most is that it’s
+                                cloud-based. Whether we’re at the hotel, checking in guests, managing supplies in the
+                                back office, or even traveling, we can access everything we need right from our devices.
+                            </p>
+                            <p data-start="678" data-end="871">As we continue to grow, it’s clear that OGAMANAJA will
+                                grow with us. It's been a game-changer for our operations, and we’re genuinely happy
+                                with how much easier it has made our day-to-day work.</p>
+                        </div>
+                        <span class="testimonial-card-1__quote-symbol">
+                            <i class="fas fa-quote-left"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------>
+    <!--CTA---------------->
+    <!------------------------------>
+    <div class="block-29 my-lg-5 px-4 px-sm-5 container space-between-blocks overflow-hidden px-xxl-4">
+        <div class="row justify-content-center px-lg-5">
+            <div class="col-lg-8 mx-auto mb-3 mb-lg-0">
+                <h4 class="block-29__title m-0">
+                    Automate your business Today.
+                </h4>
+                <p class="block-29__paragraph mt-3">
+                    Talk to one of our product experts. We’re here to help you get started for your business.
+                </p>
+            </div>
+            <div
+                class="col-lg-4 mx-auto mt-4 mt-xl-0 d-flex flex-row-reverse align-items-center justify-content-center justify-content-lg-start">
+                <div class="text-center">
+                    <a class="btn btn-secondary" href="https://ovendor.shop/public/business/register">
+                        <span class="mx-1">
+                            Try Now
+                        </span>
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="mx-1 bi bi-arrow-right"
+                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.647-2.646a.5.5 0 0 1 0-.708z">
+                            </path>
+                            <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------>
+    <!--FAQ---------------->
+    <!------------------------------>
+    <div class="block-39 space-between-blocks">
+        <div class="container">
+            <!-- HEADER -->
+            <div class="col-lg-9 mx-auto text-center px-0 mb-5">
+                <h1 class="block__title--big">Frequently Asked Questions</h1>
+            </div>
+            <div class="row px-2">
+                <div class="col-lg-6">
+                    <div class="content-block">
+                        <h4 class="content-block__title">
+                            Why should we switch to cloud-based business management software compared to traditional
+                            desktop software?
+                        </h4>
+                        <p class="content-block__paragraph">
+                            Cloud-based software provides you a low-cost, secure &amp; mobile software solutions.
+                            Compared to traditional software that requires it to install on a computer - cloud-based can
+                            be accessed from anywhere without any hardware dependency.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content-block">
+                        <h4 class="content-block__title">
+                            How secure is my business data?
+                        </h4>
+                        <p class="content-block__paragraph">
+                            All data are stored in our centralized database which is highly protected with multi-layers
+                            of privileges. We takes regular frequency interval automated backup to protect from any
+                            unwanted consequences.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content-block">
+                        <h4 class="content-block__title">
+                            Whom should I reach out to in case of any problems?
+                        </h4>
+                        <p class="content-block__paragraph">
+                            Please contact our support, write us in the contact section or call to the number mentioned.
+                            You're assured to receive a response in a maximum of 24 hours.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content-block">
+                        <h4 class="content-block__title">
+                            Is this POS application Free?
+                        </h4>
+                        <p class="content-block__paragraph">
+                            We do provide a free tier for very small business or business that is about to start. To
+                            take more advantage of this POS software we recommend that you upgrade to a better plan that
+                            unlocks more features.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content-block">
+                        <h4 class="content-block__title">
+                            Do you provide consultancy or implementation solutions for using this POS software?
+                        </h4>
+                        <p class="content-block__paragraph">
+                            Yes, with a pro plan you can connect with one of our experts who will help you with
+                            implementing the solution for your business.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content-block">
+                        <h4 class="content-block__title">
+                            Are there any additional hardware required or subscription charges?
+                        </h4>
+                        <p class="content-block__paragraph">
+                            This is cloud-based software. You'll only need a device with an internet connection &amp;
+                            chrome browser. It runs within the browser. No additional hardware is required. But you can
+                            use some hardware like barcode scanners, and printers for your convenience to speed up work.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start chatWidget Style Container ( Required )  -->
+    <div class="container">
+
+        <!-- Click To chatWidget Container -->
+        <div class="cp-style1 cp-right-bottom">
+
+            <!-- Start Floating Panel Container -->
+            <div class="cp-panel">
+
+                <!-- Chat Button For Whatsapp -->
+                <a class="cp-list cp-whatsapp" data-number="09137271619" data-message="" target="_blank">
+                    <div class="cp-image">
+                        <i class="fab fa-whatsapp text-white fa-2x mt-2"></i>
+                    </div>
+                    <div class="cp-content">
+                        <h2>Whatsapp</h2>
+                        <p>
+                            Chat on Whatsapp
+                        </p>
+                    </div>
+                </a>
+                <a class="cp-list cp-whatsapp" data-number="07064573705" data-message="" target="_blank">
+                    <div class="cp-image">
+                        <i class="fab fa-whatsapp text-white fa-2x mt-2"></i>
+                    </div>
+                    <div class="cp-content">
+                        <h2>Whatsapp</h2>
+                        <p>
+                            Chat on Whatsapp
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Chat Button For Facebook Messenger -->
+
+                <!-- Chat Button For Telegram -->
+
+                <!-- Mail Button For Email -->
+                <a class="cp-list" href="mailto:Admin@ovendor.shop" target="_blank">
+                    <div class="cp-image">
+                        <i class="far fa-envelope text-white fa-2x mt-2"></i>
+                    </div>
+                    <div class="cp-content">
+                        <h2>Email</h2>
+                        <p>Send Email</p>
+                    </div>
+                </a>
+                <a class="cp-list" href="mailto:info.ogamanaja@gmail.com" target="_blank">
+                    <div class="cp-image">
+                        <i class="far fa-envelope text-white fa-2x mt-2"></i>
+                    </div>
+                    <div class="cp-content">
+                        <h2>Email</h2>
+                        <p>Send Email</p>
+                    </div>
+                </a>
+
+                <!-- Call Button For Phone Number -->
+                <a class="cp-list" href="tel:+09137271619" target="_blank">
+                    <div class="cp-image">
+                        <i class="fas fa-phone-volume text-white fa-2x mt-2"></i>
+                    </div>
+                    <div class="cp-content">
+                        <h2>Call</h2>
+                        <p>Talk with us over telephone</p>
+                    </div>
+                </a>
+                <a class="cp-list" href="tel:+07064573705" target="_blank">
+                    <div class="cp-image">
+                        <i class="fas fa-phone-volume text-white fa-2x mt-2"></i>
+                    </div>
+                    <div class="cp-content">
+                        <h2>Call</h2>
+                        <p>Talk with us over telephone</p>
+                    </div>
+                </a>
+
+            </div>
+            <!--/ End Floating Panel Container -->
+
+            <!-- Start Right Floating Button -->
+            <div class="cp-button cp-right-bottom">
+                <i id="cp-cmt-o" class="far fa-comments fa-lg"></i>
+            </div>
+            <!--/ End Right Floating Button -->
+
+        </div>
+    </div>
+    <!--/ End chatWidget Style Container -->
+    <!------------------------------>
+    <!--Footer---------------->
+    <!------------------------------>
+    <div class="block-44">
+        <hr class="block-44__divider">
+        <div class="container">
+            <div class="row flex-column flex-md-row px-2 justify-content-center">
+                <div class="flex-grow-1 col">
+                    <ul class="block-44__extra-links d-flex list-unstyled p-0">
+                        <li class="mx-2">
+                            <a href="https://www.facebook.com/ogamanaja" target="_blank" title="Facebook"
+                                class="block-44__link m-0">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="https://www.instagram.com/ogamanaja" target="_blank" title="Instagram"
+                                class="block-44__link m-0">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="https://twitter.com/ogamanaja" target="_blank" title="Twitter"
+                                class="block-44__link m-0">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="https://in.linkedin.com/company/ogamanaja" target="_blank" title="Linkedin"
+                                class="block-44__link m-0">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="https://www.youtube.com/c/ogamanaja" target="_blank" title="YouTube"
+                                class="block-44__link m-0">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p
+                    class="block-41__copyrights col col-md-8 text-xxl-end text-xl-end text-lg-end text-md-end text-sm-center">
+                    © &nbsp;2025 &nbsp;OGAMANAJA. &nbsp;All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/tua-body-scroll-lock"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-js/1.3.0/sticky.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://ovendor.shop/modules/cms/js/cms.js?v=670"></script>
+
+    <!-- Google analytics code -->
+
+    <!-- facebook pixel code -->
+
+    <!-- custom js -->
+
+    <!-- 3rd party chat_widget -->
+    <!-- in app chat js -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //click event on a tag for Whatsapp
+            $('.cp-whatsapp').on("click", function () {
+
+                var number = $(this).attr("data-number");
+                var message = $(this).attr("data-message");
+
+                //checking for device type
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    // redirect link for mobile WhatsApp chat awc
+                    window.open('https://wa.me/' + number + '/?text=' + message, '-blank');
+                }
+                else {
+                    // redirect link for WhatsApp chat in website
+                    window.open('https://web.WhatsApp.com/send?phone=' + number + '&text=' + message, '-blank');
+                }
+            })
+
+            // chat widget open/close duration
+            $('cp-style1').launchBtn({ openDuration: 400, closeDuration: 300 });
+        });
+
+        // chat panel open/close function
+        (function ($) {
+
+            'use strict';
+
+            $.fn.launchBtn = function (options) {
+
+                var mainBtn, panel, clicks, settings, launchPanelAnim, closePanelAnim, openPanel, boxClick;
+
+                mainBtn = $(".cp-button");
+                panel = $(".cp-panel");
+                clicks = 0;
+
+                //default settings
+                settings = $.extend({
+                    openDuration: 600,
+                    closeDuration: 200,
+                    rotate: true
+                }, options);
+
+                //Open panel animation
+                launchPanelAnim = function () {
+                    panel.animate({
+                        opacity: "toggle",
+                        height: "toggle"
+                    }, settings.openDuration);
+                };
+
+                //Close panel animation
+                closePanelAnim = function () {
+                    panel.animate({
+                        opacity: "hide",
+                        height: "hide"
+                    }, settings.closeDuration);
+                };
+
+                //Open panel and rotate icon
+                openPanel = function (e) {
+                    if (clicks === 0) {
+                        if (settings.rotate) {
+                            $(this).removeClass('rotateBackward').toggleClass('rotateForward');
+
+                            $(".cp-list").addClass('animated zoomIn');
+                        }
+
+                        launchPanelAnim();
+                        clicks++;
+                    }
+                    else {
+                        if (settings.rotate) {
+                            $(this).removeClass('rotateForward').toggleClass('rotateBackward');
+
+                            $(".cp-list").removeClass('animated zoomIn');
+                        }
+
+                        closePanelAnim();
+                        clicks--;
+                    }
+
+                    e.preventDefault();
+                    return false;
+                };
+
+                //Allow clicking in panel
+                boxClick = function (e) {
+                    e.stopPropagation();
+                };
+
+                //Main button click
+                mainBtn.on('click', openPanel);
+
+                //Prevent closing panel when clicking inside
+                panel.click(boxClick);
+
+                //Click away closes panel when clicked in document
+                $(document).click(function () {
+
+                    closePanelAnim();
+
+                    if (clicks === 1) {
+                        mainBtn.removeClass('rotateForward').toggleClass('rotateBackward');
+                    }
+                    clicks = 0;
+                });
+            };
+        }(jQuery));
+    </script>
+    <script type="text/javascript">
+        new Sticky("[sticky]");
+    </script>
+
+</body>
+
+</html>
