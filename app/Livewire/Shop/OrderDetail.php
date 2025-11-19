@@ -93,8 +93,6 @@ class OrderDetail extends Component
         }
     }
 
-
-
     public function InitializePayment()
     {
         $this->total = floatval($this->paymentOrder->total) - floatval($this->paymentOrder->amount_paid ?: 0);

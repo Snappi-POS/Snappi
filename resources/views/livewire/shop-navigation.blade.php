@@ -2,7 +2,7 @@
 <header class="lg:hidden">
     <nav class="bg-white border-gray-200 px-4 py-2.5 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto">
-            <a href="{{ route('shop_restaurant', [$restaurant->hash]).'?branch=' . $shopBranch->id }}" class="flex items-center app-logo">
+            <a href="{{ route('business_page', [$restaurant->hash]).'?branch=' . $shopBranch->id }}" class="flex items-center app-logo">
                 <img src="{{ $restaurant->logoUrl }}" class="ltr:mr-3 rtl:ml-3 h-6 sm:h-9" alt="App Logo" />
                 @if ($restaurant->show_logo_text)
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{ $restaurant->name }}</span>
@@ -29,7 +29,7 @@
                 <ul class="flex flex-col font-medium ">
                     @if ($restaurant->allow_customer_orders)
                     <li>
-                        <a href="{{ route('shop_restaurant', [$restaurant->hash]) }}" wire:navigate class="block py-2 pr-4 pl-3 text-gray-700 rounded   dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:bg-gray-700" >@lang('menu.newOrder')</a>
+                        <a href="{{ route('business_page', [$restaurant->hash]) }}" wire:navigate class="block py-2 pr-4 pl-3 text-gray-700 rounded   dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:bg-gray-700" >@lang('menu.newOrder')</a>
                     </li>
                     @endif
                     @if (in_array('Table Reservation', $modules))

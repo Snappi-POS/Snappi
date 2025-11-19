@@ -165,12 +165,12 @@
                 @endphp
             @else
                 @php
-                    $newOrderLink = module_enabled('Subdomain')?url('/'):route('shop_restaurant',['hash' => $restaurant->hash]);
+                    $newOrderLink = module_enabled('Subdomain')?url('/'):route('business_page',['hash' => $restaurant->hash]);
                 @endphp
             @endif
         @else
             @php
-                $newOrderLink = module_enabled('Subdomain')?url('/'):route('shop_restaurant',['hash' => $restaurant->hash]).'?current_order='.$order->id;
+                $newOrderLink = module_enabled('Subdomain')?url('/'):route('business_page',['hash' => $restaurant->hash]).'?current_order='.$order->id;
             @endphp
         @endif
 

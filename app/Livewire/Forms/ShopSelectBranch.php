@@ -33,7 +33,7 @@ class ShopSelectBranch extends Component
         session(['branch' => $branch]);
 
 
-        $this->redirect(route('shop_restaurant', [$branch->restaurant->hash]) . '?branch=' . $id);
+        $this->redirect(route('business_page', [$branch->restaurant->hash]) . '?branch=' . $id);
     }
 
     public function render()

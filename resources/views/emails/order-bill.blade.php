@@ -1,7 +1,7 @@
 @component('mail::layout')
 
 @slot('header')
-@component('mail::header', ['url' => route('shop_restaurant', ['hash' => $settings->hash])])
+@component('mail::header', ['url' => route('business_page', ['hash' => $settings->hash])])
 {{ $settings->name }}
 @endcomponent
 @endslot

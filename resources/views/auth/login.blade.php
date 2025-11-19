@@ -40,7 +40,7 @@
             </div>
             <div class="flex items-center justify-between mt-4">
                 @if(!module_enabled('Subdomain'))
-                <div class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">@lang('auth.areYouNew', ['appName' => global_setting()->name]) <a href="{{ route('restaurant_signup') }}"
+                <div class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">@lang('auth.areYouNew', ['appName' => global_setting()->name]) <a href="{{ route('business_signup') }}"
                     class="underline underline-offset-1 font-medium">@lang('auth.createAccount')</a></div>
                 @endif
 

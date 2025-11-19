@@ -90,7 +90,7 @@ class HomeController extends Controller
     public function customerLogout()
     {
         session()->flush();
-        return redirect(module_enabled('Subdomain') ? url('/') : route('shop_restaurant', [request()->restaurant]));
+        return redirect(module_enabled('Subdomain') ? url('/') : route('business_page', [request()->restaurant]));
     }
 
     public function manifest()

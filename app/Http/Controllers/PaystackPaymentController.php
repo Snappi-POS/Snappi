@@ -84,7 +84,7 @@ class PaystackPaymentController extends Controller
         session()->flash('flash.banner', 'Payment process failed!');
         session()->flash('flash.bannerStyle', 'danger');
 
-        return redirect(route('shop_restaurant', [$payment->order->branch->restaurant->hash]) . '?branch=' . $payment->order->branch_id);
+        return redirect(route('business_page', [$payment->order->branch->restaurant->hash]) . '?branch=' . $payment->order->branch_id);
     }
     /**
      * Handle redirect after successful payment.

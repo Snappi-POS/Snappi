@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-skin-base text-white hover:bg-skin-base/90 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-skin-base focus:ring-offset-2 dark:focus:ring-offset-neutral-900 transition-colors" href="{{ route('restaurant_signup')}}">
+                            <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-skin-base text-white hover:bg-skin-base/90 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-skin-base focus:ring-offset-2 dark:focus:ring-offset-neutral-900 transition-colors" href="{{ route('business_signup')}}">
                                 @lang('landing.getStarted')
                             </a>
                         </div>

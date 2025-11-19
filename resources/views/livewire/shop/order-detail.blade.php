@@ -521,9 +521,9 @@
                 if ($order->order_type === 'delivery' || in_array($order->status, ['paid', 'pending_verification', 'canceled', 'delivered'])) {
                     $newOrderLink = $order->table_id
                         ? route('table_order', [$order->table->hash])
-                        : ($isSubdomainEnabled ? url('/') : route('shop_restaurant', ['hash' => $restaurant->hash]));
+                        : ($isSubdomainEnabled ? url('/') : route('business_page', ['hash' => $restaurant->hash]));
                 } else {
-                    $newOrderLink = ($isSubdomainEnabled ? url('/') : route('shop_restaurant', ['hash' => $restaurant->hash])) . '?current_order=' . $order->id;
+                    $newOrderLink = ($isSubdomainEnabled ? url('/') : route('business_page', ['hash' => $restaurant->hash])) . '?current_order=' . $order->id;
                 }
             @endphp
 
