@@ -924,6 +924,7 @@ return [
         'salesThisMonth' => 'Sales This Month',
         'topTables' => 'Top Selling Tables',
         'topDish' => 'Top Selling Item',
+        'lowStock' => 'Low Stock Items',
         'todayRestaurantCount' => 'Today\'s Business Count',
         'totalRestaurantCount' => 'Total Business Count',
         'totalFreeRestaurantCount' => 'Total Free Business Count',

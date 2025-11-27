@@ -2,32 +2,22 @@
 
 namespace App\Models;
 
-use App\Models\Menu;
-use App\Models\OrderItem;
-use App\Traits\HasBranch;
-use App\Models\ItemCategory;
-use App\Models\MenuItemVariation;
-use App\Models\MenuItemTranslation;
-use Illuminate\Support\Facades\Cache;
 use App\Scopes\AvailableMenuItemScope;
-use Spatie\Translatable\HasTranslations;
+use App\Traits\HasBranch;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Models\BaseModel;
-use App\Models\Measurement;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use App\Models\Stock;
-use App\Models\StockMovement;
+use Spatie\Translatable\HasTranslations;
 
 
 class MenuItem extends BaseModel
 {
     use HasFactory, HasBranch, HasTranslations;
-
 
     const VEG = 'veg';
     const NONVEG = 'non-veg';
@@ -62,14 +52,67 @@ class MenuItem extends BaseModel
         'item_photo_url',
     ];
 
-    protected $with = ['translations', 'measurement'];
+    protected $with = ['translations', 'measurement', 'orders'];
 
+    public static function calculateItemTaxes($itemPrice, $taxes = [], $inclusive)
+    {
+        // Ensure $taxes is a collection
+        if (is_array($taxes)) {
+            $taxes = collect($taxes);
+        }
+
+        $taxPercent = $taxes->sum('tax_percent');
+        $basePrice = floatval($itemPrice);
+
+        $taxBreakdown = [];
+        $totalTax = 0;
+
+        if ($inclusive) {
+            $base = $basePrice / (1 + $taxPercent / 100);
+            $totalTax = $basePrice - $base;
+
+            foreach ($taxes as $tax) {
+                $amount = $base * ($tax->tax_percent / 100);
+                $taxBreakdown[$tax->tax_name] = [
+                    'percent' => $tax->tax_percent,
+                    'amount' => round($amount, 2)
+                ];
+                // No need to add to totalTax here as it's already calculated above
+            }
+        } else {
+            $base = $basePrice;
+            $totalTax = 0;
+
+            foreach ($taxes as $tax) {
+                $amount = $base * ($tax->tax_percent / 100);
+                $taxBreakdown[$tax->tax_name] = [
+                    'percent' => $tax->tax_percent,
+                    'amount' => round($amount, 2)
+                ];
+                $totalTax += $amount;
+            }
+        }
+
+        return [
+            'base' => $base,
+            'tax_amount' => $totalTax,
+            'tax_percentage' => $taxPercent,
+            'total_amount' => $base + $totalTax,
+            'inclusive' => $inclusive,
+            'tax_breakdown' => $taxBreakdown
+        ];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new AvailableMenuItemScope());
+    }
 
     public function measurement(): BelongsTo
     {
         return $this->belongsTo(Measurement::class, 'measurement_id');
     }
-
 
     public function mainmeasure()
     {
@@ -115,16 +158,20 @@ class MenuItem extends BaseModel
         return $quantity . ' ' . Str::plural($main, $quantity);
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope(new AvailableMenuItemScope());
-    }
-
-
     public function stock()
     {
         return $this->hasOne(Stock::class, 'menu_item_id');
+    }
+
+    public function getCurrentStockAttribute()
+    {
+        // prefer the stocks table (single row) if present
+        if ($this->relationLoaded('stock') || $this->stock) {
+            return $this->stock ? (int)$this->stock->quantity : 0;
+        }
+
+        // fallback to summing movements if stocks table not populated
+        return (int)$this->stockMovements()->sum('quantity_change');
     }
 
     public function stockMovements()
@@ -132,25 +179,14 @@ class MenuItem extends BaseModel
         return $this->hasMany(StockMovement::class, 'menu_item_id');
     }
 
-    public function getCurrentStockAttribute()
-    {
-        // prefer the stocks table (single row) if present
-        if ($this->relationLoaded('stock') || $this->stock) {
-            return $this->stock ? (int) $this->stock->quantity : 0;
-        }
-
-        // fallback to summing movements if stocks table not populated
-        return (int) $this->stockMovements()->sum('quantity_change');
-    }
-
     public function translations(): HasMany
     {
         return $this->hasMany(MenuItemTranslation::class, 'menu_item_id');
     }
 
-    public function translation($locale = null): HasOne
+    public function getItemNameAttribute(): string
     {
-        return $this->hasOne(MenuItemTranslation::class)->where('locale', $locale ?? app()->getLocale());
+        return $this->getTranslatedValue('item_name');
     }
 
     public function getTranslatedValue(string $attribute, ?string $locale = null): string
@@ -164,9 +200,9 @@ class MenuItem extends BaseModel
         });
     }
 
-    public function getItemNameAttribute(): string
+    public function translation($locale = null): HasOne
     {
-        return $this->getTranslatedValue('item_name');
+        return $this->hasOne(MenuItemTranslation::class)->where('locale', $locale ?? app()->getLocale());
     }
 
     public function getDescriptionAttribute(): string
@@ -188,6 +224,7 @@ class MenuItem extends BaseModel
     {
         return $this->belongsTo(Menu::class);
     }
+
     public function purchases()
     {
         return $this->hasMany(Purchase::class, 'menu_item_id', 'id');
@@ -286,52 +323,11 @@ class MenuItem extends BaseModel
         ];
     }
 
-    public static function calculateItemTaxes($itemPrice, $taxes = [], $inclusive)
+    public function scopeTodayPaidOrders($query)
     {
-        // Ensure $taxes is a collection
-        if (is_array($taxes)) {
-            $taxes = collect($taxes);
-        }
-
-        $taxPercent = $taxes->sum('tax_percent');
-        $basePrice = floatval($itemPrice);
-
-        $taxBreakdown = [];
-        $totalTax = 0;
-
-        if ($inclusive) {
-            $base = $basePrice / (1 + $taxPercent / 100);
-            $totalTax = $basePrice - $base;
-
-            foreach ($taxes as $tax) {
-                $amount = $base * ($tax->tax_percent / 100);
-                $taxBreakdown[$tax->tax_name] = [
-                    'percent' => $tax->tax_percent,
-                    'amount' => round($amount, 2)
-                ];
-                // No need to add to totalTax here as it's already calculated above
-            }
-        } else {
-            $base = $basePrice;
-            $totalTax = 0;
-
-            foreach ($taxes as $tax) {
-                $amount = $base * ($tax->tax_percent / 100);
-                $taxBreakdown[$tax->tax_name] = [
-                    'percent' => $tax->tax_percent,
-                    'amount' => round($amount, 2)
-                ];
-                $totalTax += $amount;
-            }
-        }
-
-        return [
-            'base' => $base,
-            'tax_amount' => $totalTax,
-            'tax_percentage' => $taxPercent,
-            'total_amount' => $base + $totalTax,
-            'inclusive' => $inclusive,
-            'tax_breakdown' => $taxBreakdown
-        ];
+        return $query->withWhereHas('orders.order', function ($q) {
+            $q->where('status', 'paid')
+                ->whereDate('created_at', today());
+        });
     }
 }
