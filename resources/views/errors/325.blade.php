@@ -66,7 +66,7 @@
 
             <!-- Action Buttons -->
             <div class="mt-8 space-y-4">
-                <a href="{{ route('restaurant_signup') }}"
+                <a href="{{ route('business_signup') }}"
                    class="group relative flex w-full justify-center rounded-lg px-4 py-4 text-sm font-semibold text-white theme-transition"
                    :class="darkMode ? 'bg-purple-600 hover:bg-purple-500' : 'bg-indigo-600 hover:bg-indigo-500'">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">

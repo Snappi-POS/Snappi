@@ -61,13 +61,30 @@ Route::get('/manifest.json', [HomeController::class, 'manifest'])->name('manifes
 Route::middleware(['clear.customer.language', LocaleMiddleware::class])->group(function () {
 
     Route::get('/', [HomeController::class, 'landing'])->name('home')->middleware(DisableFrontend::class);
-    Route::get('/restaurant-signup', [HomeController::class, 'signup'])->name('restaurant_signup');
+    Route::get('/business-signup', [HomeController::class, 'signup'])->name('business_signup');
     Route::get('/customer-logout', [HomeController::class, 'customerLogout'])->name('customer_logout');
     Route::get('page/{slug}', [CustomMenuController::class, 'index'])->name('customMenu');
 
+    // Route::get('/optimize-cache', function () {
+//     Artisan::call('optimize');
+//     return 'Optimization (cache) completed!';
+// });
+
+// Route::get('/clear-cache', function() {
+//     Artisan::call('cache:clear');
+//     Artisan::call('config:clear');
+//     Artisan::call('route:clear');
+//     Artisan::call('view:clear');
+//     Artisan::call('optimize:clear');
+
+//     return "All cache cleared successfully!";
+// });
 
 
-    Route::group(['prefix' => 'restaurant', 'middleware' => ['customer.site.locale']], function () {
+    Route::group(['prefix' => 'business', 'middleware' => ['customer.site.locale']], function () {
+
+        Route::get('/{hash}', [ShopController::class, 'cart'])->name('business_page');
+
         Route::get('/table/{hash}', [ShopController::class, 'tableOrder'])->name('table_order')->where('id', '.*');
         Route::get('/my-orders/{hash}', [ShopController::class, 'myOrders'])->name('my_orders');
         Route::get('/my-bookings/{hash}', [ShopController::class, 'myBookings'])->name('my_bookings');
@@ -80,7 +97,6 @@ Route::middleware(['clear.customer.language', LocaleMiddleware::class])->group(f
     });
 
 
-    Route::get('/restaurant/{hash}', [ShopController::class, 'cart'])->name('shop_restaurant')->middleware('customer.site.locale');
 
     Route::post('stripe/order-payment', [StripeController::class, 'orderPayment'])->name('stripe.order_payment');
     Route::get('/stripe/success-callback', [StripeController::class, 'success'])->name('stripe.success');
@@ -183,7 +199,6 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified', SuperAd
         Route::resource('packages', PackageController::class);
 
         Route::resource('invoices', BillingController::class);
-
 
         Route::get('offline-plan', [BillingController::class, 'offlinePlanRequests'])->name('offline-plan-request');
 

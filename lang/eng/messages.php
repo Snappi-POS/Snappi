@@ -49,7 +49,7 @@ return array(
     'waitingTodayOrder' => ' Waiting for the today\'s first order &#x23F3;',
     'updateAlert' => 'Do not click update now button if the application is customized. Your changes will be lost.',
     'updateBackupNotice' => 'Take a backup of files and database before updating.',
-    'frontHeroHeading' => 'From Our Store to Your Door. Shop With Ease!',
+    'frontHeroHeading' => 'Experience Faster Access To The Best Stores And Services Near You',
     'profileUpdated' => 'Profile Updated Successfully',
     'cartEmpty' => 'Your cart is empty 🙁',
     'memberAdded' => 'Member added successfully!',

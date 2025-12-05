@@ -18,7 +18,7 @@
                         <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">{{ $restaurant->name }}
 
 
-                            <a href="{{ module_enabled('Subdomain') ? 'https://' . $restaurant->sub_domain : route('shop_restaurant', [$restaurant->hash]) }}" target="_blank" class="inline-flex justify-center items-center gap-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <a href="{{ module_enabled('Subdomain') ? 'https://' . $restaurant->sub_domain : route('business_page', [$restaurant->hash]) }}" target="_blank" class="inline-flex justify-center items-center gap-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>

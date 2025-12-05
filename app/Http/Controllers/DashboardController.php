@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Pusher\PushNotifications\PushNotifications;
 
 class DashboardController extends Controller
 {
@@ -42,7 +43,7 @@ class DashboardController extends Controller
         if ($userID != $userIDInQueryParam) {
             return response('Inconsistent request', 401);
         } else {
-            $beamsClient = new \Pusher\PushNotifications\PushNotifications([
+            $beamsClient = new PushNotifications([
                 'instanceId' => pusherSettings()->instance_id,
                 'secretKey' => pusherSettings()->beam_secret,
             ]);
@@ -56,7 +57,7 @@ class DashboardController extends Controller
     public function sendPushNotifications($usersIDs, $title, $body, $link)
     {
         if (App::environment('codecanyon') && pusherSettings()->beamer_status && count($usersIDs) > 0) {
-            $beamsClient = new \Pusher\PushNotifications\PushNotifications([
+            $beamsClient = new PushNotifications([
                 'instanceId' =>  pusherSettings()->instance_id,
                 'secretKey' =>  pusherSettings()->beam_secret,
             ]);

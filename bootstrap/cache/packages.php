@@ -59,13 +59,13 @@
   ),
   'intervention/image' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Intervention\\Image\\ImageServiceProvider',
-    ),
     'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
+    ),
+    'providers' => 
+    array (
+      0 => 'Intervention\\Image\\ImageServiceProvider',
     ),
   ),
   'jantinnerezo/livewire-alert' => 
@@ -156,13 +156,13 @@
   ),
   'macellan/laravel-zip' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Macellan\\Zip\\ZipServiceProvider',
-    ),
     'aliases' => 
     array (
       'Zip' => 'Macellan\\Zip\\ZipFacade',
+    ),
+    'providers' => 
+    array (
+      0 => 'Macellan\\Zip\\ZipServiceProvider',
     ),
   ),
   'mhmiton/laravel-modules-livewire' => 

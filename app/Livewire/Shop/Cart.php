@@ -154,7 +154,7 @@ class Cart extends Component
             $this->orderID = request()->get('current_order');
             $this->order = Order::find($this->orderID);
             if ($this->order->status == 'paid') {
-                $this->redirect(module_enabled('Subdomain') ? url('/') : route('shop_restaurant', ['hash' => $this->order->branch->restaurant->hash]));
+                $this->redirect(module_enabled('Subdomain') ? url('/') : route('business_page', ['hash' => $this->order->branch->restaurant->hash]));
             }
         }
 

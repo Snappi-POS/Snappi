@@ -44,7 +44,7 @@ class StripeController extends Controller
           ]],
           'mode' => 'payment',
           'success_url' => route('stripe.success').'?session_id={CHECKOUT_SESSION_ID}',
-          'cancel_url' => module_enabled('Subdomain') ? url('/') : route('shop_restaurant', ['hash' => $milestonePayment->order->branch->restaurant->hash]),
+          'cancel_url' => module_enabled('Subdomain') ? url('/') : route('business_page', ['hash' => $milestonePayment->order->branch->restaurant->hash]),
           'client_reference_id' => $milestonePayment->id
         ]);
 
