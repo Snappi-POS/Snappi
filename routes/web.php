@@ -65,6 +65,22 @@ Route::middleware(['clear.customer.language', LocaleMiddleware::class])->group(f
     Route::get('/customer-logout', [HomeController::class, 'customerLogout'])->name('customer_logout');
     Route::get('page/{slug}', [CustomMenuController::class, 'index'])->name('customMenu');
 
+    // Route::get('/optimize-cache', function () {
+//     Artisan::call('optimize');
+//     return 'Optimization (cache) completed!';
+// });
+
+// Route::get('/clear-cache', function() {
+//     Artisan::call('cache:clear');
+//     Artisan::call('config:clear');
+//     Artisan::call('route:clear');
+//     Artisan::call('view:clear');
+//     Artisan::call('optimize:clear');
+
+//     return "All cache cleared successfully!";
+// });
+
+
     Route::group(['prefix' => 'business', 'middleware' => ['customer.site.locale']], function () {
 
         Route::get('/{hash}', [ShopController::class, 'cart'])->name('business_page');

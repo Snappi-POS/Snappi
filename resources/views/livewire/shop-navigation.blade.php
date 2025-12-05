@@ -32,11 +32,11 @@
                         <a href="{{ route('business_page', [$restaurant->hash]) }}" wire:navigate class="block py-2 pr-4 pl-3 text-gray-700 rounded   dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:bg-gray-700" >@lang('menu.newOrder')</a>
                     </li>
                     @endif
-                    @if (in_array('Table Reservation', $modules))
-                    <li>
-                        <a href="{{ route('book_a_table', [$restaurant->hash]).'?branch=' . $shopBranch->id }}" wire:navigate class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:bg-gray-800" >@lang('menu.bookTable')</a>
-                    </li>
-                    @endif
+{{--                    @if (in_array('Table Reservation', $modules))--}}
+{{--                    <li>--}}
+{{--                        <a href="{{ route('book_a_table', [$restaurant->hash]).'?branch=' . $shopBranch->id }}" wire:navigate class="block py-2 pr-4 pl-3 text-gray-700 rounded dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:bg-gray-800" >@lang('menu.bookTable')</a>--}}
+{{--                    </li>--}}
+{{--                    @endif--}}
                     @if (!is_null(customer()))
                     <li>
                         <a href="{{ route('my_addresses', [$restaurant->hash]).'?branch=' . $shopBranch->id }}" wire:navigate class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700">@lang('menu.myAddresses')</a>

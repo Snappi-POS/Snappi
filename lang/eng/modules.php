@@ -891,7 +891,7 @@ return [
         'maxRadiusAutoSet' => 'Max Radius will be set automatically.',
         'shopLocation' => 'The restaurant location',
         'orderQualifiesForFreeDelivery' => 'Your order qualifies for free delivery',
-        'freeDelivery' => 'Free Delivery',
+        'freeDelivery' => 'Based On Location',
         'changeDeliveryAddress' => 'Change Delivery Address',
         'deliveryAddress' => 'Delivery Address',
         'useCurrentLocation' => 'Use Current Location',
