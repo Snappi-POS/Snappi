@@ -811,7 +811,7 @@
                                                         class="flex items-center justify-center w-full gap-2"
                                                         wire:click="placeOrder" wire:loading.delay.attr="disabled">
                                                     <span wire:loading.delay
-                                                          wire:target="placeOrder">{!! $loadingSpinner !!}</span>
+                                                          wire:target="placeOrderLater">{!! $loadingSpinner !!}</span>
                                                     @lang('modules.order.payLater')
                                                 </x-secondary-button>
                                             @endif
@@ -1094,6 +1094,7 @@
 
 
                                 {{-- Upload Button --}}
+                                <p class="text-red-600 mt-2">Receipt Validate Order</p>
                                 <label class="relative inline-flex items-center justify-center px-4 py-2 mt-2 text-white bg-green-600 rounded cursor-pointer hover:bg-green-700 disabled:opacity-60">
                                     <span wire:loading.remove wire:target="image">Upload Receipt</span>
                                     <span wire:loading wire:target="image" class="flex items-center gap-2">
@@ -1317,8 +1318,8 @@
                         <x-button class="ml-3"
                                   wire:click="placeOrder(false, {{ $paymentOrder->id }}, '{{ $showQrCode ? 'upi' : 'others' }}')"
                                   wire:loading.attr="disabled">
-                            <span wire:loading.remove>@lang('modules.billing.paymentDone')</span>
-                            <span wire:loading>Processing payment...</span>
+                            <span wire:loading.remove wire:target="placeOrder">@lang('modules.billing.paymentDone')</span>
+                            <span wire:loading wire:target="placeOrder">Processing payment...</span>
                         </x-button>
 
                     @endif

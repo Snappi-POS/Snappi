@@ -33,7 +33,7 @@ $maxWidth = [
     </div>
 
     <!-- Sliding Modal -->
-    <div x-show="show" class="mb-6 bg-white dark:bg-gray-800 overflow-auto shadow-xl transform transition-all fixed top-0 right-0 sm:w-full h-screen {{ $maxWidth }}"
+    <div x-show="show" class="mb-6 bg-white dark:bg-gray-800 overflow-auto shadow-xl transform transition-all fixed top-0 right-0 w-full h-screen {{ $maxWidth }}"
         x-trap.inert.noscroll="show"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="translate-x-full"

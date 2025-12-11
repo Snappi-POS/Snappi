@@ -693,6 +693,10 @@ class Cart extends Component
         }
     }
 
+    public function placeOrderLater()
+    {
+        return true;
+    }
     public function initiatePayment($id)
     {
         $total = round($this->total, 2);

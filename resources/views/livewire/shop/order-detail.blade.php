@@ -794,6 +794,7 @@
                             <span>{{ $paymentGateway->offline_payment_detail }}</span>
                         </div>
 
+                        <p class="text-red-600 mt-2">Receipt Validate Order</p>
                         <div class="mt-2">
                             <label for="receipt-upload"
                                    class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
@@ -982,8 +983,8 @@
                     <x-button class="ml-3"
                               wire:click="makePayment({{ $paymentOrder->id }}, '{{ $showQrCode ? 'upi' : 'others' }}')"
                               wire:loading.attr="disabled">
-                        <span wire:loading.remove>@lang('modules.billing.paymentDone')</span>
-                        <span wire:loading>Processing payment...</span>
+                        <span wire:loading.remove wire:target="makePayment">@lang('modules.billing.paymentDone')</span>
+                        <span wire:loading wire:target="makePayment">Processing payment...</span>
                     </x-button>
                 @endif
             @endif
