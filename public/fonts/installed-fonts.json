@@ -1,0 +1,14 @@
+{
+    "notosans": {
+        "normal": "\/Users\/abhinav\/htdocs\/snappi\/public\/fonts\/notosans_normal_3a78612ccee527414d2c92dcba5096ce",
+        "bold": "notosans_bold_4ff173a9add1504992e56e789e7439da"
+    },
+    "thsarabunnew": {
+        "bold": "\/home\/iyxnkmcv\/public_html\/public\/fonts\/thsarabunnew_bold_1327a796745267ba0fcfac717da69774",
+        "bold_italic": "thsarabunnew_bold_italic_f37977ef5f5c424a4ce477a685339849"
+    },
+    "bevietnampro": {
+        "normal": "\/home\/iyxnkmcv\/public_html\/public\/fonts\/bevietnampro_normal_d3d26f5b8c37e95f8e5014234668d8ca",
+        "italic": "bevietnampro_italic_9bb3125378eb195a131760e71d4d1e2c"
+    }
+}

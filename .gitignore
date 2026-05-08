@@ -1,0 +1,95 @@
+# Laravel specific
+/node_modules
+/public/storage
+/.env.backup
+/.env.production
+/.env.local
+/storage/*.key
+/vendor
+/.phpunit.cache
+/.phpunit.result.cache
+/Homestead.json
+/Homestead.yaml
+/auth.json
+/.idea
+/.vscode
+/.vagrant
+/.nova
+
+# Compiled files
+*.composer
+*.composer.json
+*.lock
+*.phar
+*.swp
+.DS_Store
+/.php-cs-fixer.cache
+
+# Logs and databases
+*.log
+*.sqlite
+*.sqlite-journal
+
+# Cache files
+/.cache
+/.phpunit.cache
+/bootstrap/cache/*.php
+!bootstrap/cache/.gitkeep
+/storage/logs/*.log
+!storage/logs/.gitkeep
+/storage/framework/cache/*.php
+!storage/framework/cache/.gitkeep
+/storage/framework/sessions/*.php
+!storage/framework/sessions/.gitkeep
+/storage/framework/testing/*.php
+!storage/framework/testing/.gitkeep
+/storage/framework/views/*.php
+!storage/framework/views/.gitkeep
+
+# Testing
+/coverage
+/coverage-xml
+/phpunit.xml
+/.phpunit.result.cache
+/phpunit.xml.bak
+/test-report
+/test-results
+
+# IDE files
+/.vscode/
+/.idea/
+/.phpstorm.meta.php
+/.phpstorm.meta.php
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Deployment files
+/.env.*.local
+/.env.*.production
+/deploy.php
+/.forge
+
+# NPM
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+yarn.lock
+
+# Composer
+composer.phar
+composer.lock
+
+# Laravel Spark
+/storage/app/public
+/storage/oauth-private.key
+/storage/oauth-public.key
+
+# Laravel Telescope
+/telescope
+
+# Laravel Horizon
+/horizon
