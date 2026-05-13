@@ -93,3 +93,6 @@ composer.lock
 
 # Laravel Horizon
 /horizon
+
+/AGENTS.md
+.github/instructions
