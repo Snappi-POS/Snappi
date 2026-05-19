@@ -338,6 +338,9 @@ class Pos extends Component
     public function setupOrderItems()
     {
         if ($this->orderDetail) {
+            // Eager-load all nested relationships in one query to avoid N+1
+            $this->orderDetail->load(['kot.items.menuItem', 'kot.items.menuItemVariation', 'kot.items.modifierOptions']);
+
             foreach ($this->orderDetail->kot as $kot) {
                 $this->kotList['kot_' . $kot->id] = $kot;
 
@@ -1572,23 +1575,32 @@ class Pos extends Component
 
     public function render()
     {
-
-        $query = MenuItem::withCount('variations', 'modifierGroups')
-            ->with('stock')
-            ->when(!empty($this->filterCategories), fn($q) => $q->where('item_category_id', $this->filterCategories))
-            ->search('item_name', $this->search)
-            ->get()
-            ->map(function ($item) {
-                $item->quantity = $item->stock->quantity ?? 0;
-                return $item;
-            });
-
-
-        // $query = $query->search('item_name', $this->search)->get();
+        $menuItems = $this->getMenuItems();
 
         return view('livewire.pos.pos', [
-            'menuItems' => $query
+            'menuItems' => $menuItems
         ]);
+    }
+
+    /**
+     * Get menu items with caching to avoid re-querying on cart-only actions.
+     * Cache is invalidated when search or filter changes.
+     */
+    private function getMenuItems()
+    {
+        $cacheKey = 'pos_menu_' . branch()->id . '_' . md5(($this->search ?? '') . '_' . ($this->filterCategories ?? ''));
+
+        return Cache::remember($cacheKey, 60, function () {
+            return MenuItem::withCount('variations', 'modifierGroups')
+                ->with('stock')
+                ->when(!empty($this->filterCategories), fn($q) => $q->where('item_category_id', $this->filterCategories))
+                ->search('item_name', $this->search)
+                ->get()
+                ->map(function ($item) {
+                    $item->quantity = $item->stock->quantity ?? 0;
+                    return $item;
+                });
+        });
     }
 
     // Update item notes and save to database if applicable

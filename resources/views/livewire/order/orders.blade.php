@@ -169,6 +169,10 @@
             <x-order.order-card :order='$item' wire:key='order-{{ $item->id . microtime() }}' />
             @endforeach
         </div>
+
+        <div class="mt-4">
+            {{ $orders->links() }}
+        </div>
     </div>
     <!-- End Card Section -->
 

@@ -10,9 +10,12 @@ use App\Models\PusherSetting;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\Features\SupportPagination\WithoutUrlPagination;
 
 class Orders extends Component
 {
+    use WithPagination, WithoutUrlPagination;
 
     protected $listeners = ['refreshOrders' => '$refresh'];
 
@@ -61,6 +64,7 @@ class Orders extends Component
 
     public function updatedDateRangeType($value)
     {
+        $this->resetPage();
         cookie()->queue(cookie('orders_date_range_type', $value, 60 * 24 * 30)); // 30 days
     }
 
@@ -72,6 +76,26 @@ class Orders extends Component
     public function updatedPollingInterval($value)
     {
         cookie()->queue(cookie('orders_polling_interval', (int)$value, 60 * 24 * 30)); // 30 days
+    }
+
+    public function updatedFilterOrders()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFilterWaiter()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFilterOrderType()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedActiveTab()
+    {
+        $this->resetPage();
     }
 
     public function setDateRange()
@@ -153,102 +177,86 @@ class Orders extends Component
     }
 
     public function render()
-{
-    $start = Carbon::createFromFormat('m/d/Y', $this->startDate)
-        ->startOfDay()
-        ->toDateTimeString();
+    {
+        $start = Carbon::createFromFormat('m/d/Y', $this->startDate)
+            ->startOfDay()
+            ->toDateTimeString();
 
-    $end = Carbon::createFromFormat('m/d/Y', $this->endDate)
-        ->endOfDay()
-        ->toDateTimeString();
+        $end = Carbon::createFromFormat('m/d/Y', $this->endDate)
+            ->endOfDay()
+            ->toDateTimeString();
 
-    // Base query
-    $ordersQuery = Order::withCount('items')
-        ->with('table', 'waiter', 'customer')
-        ->where('status', '<>', 'draft')
-        ->whereBetween('orders.date_time', [$start, $end])
-        ->orderBy('id', 'desc');
+        // Base query with DB-level filtering
+        $baseQuery = Order::withCount('items')
+            ->with('table', 'waiter', 'customer')
+            ->where('status', '<>', 'draft')
+            ->whereBetween('orders.date_time', [$start, $end])
+            ->orderBy('id', 'desc');
 
-    // Apply order type filter if selected
-    if (!empty($this->filterOrderType)) {
-        $ordersQuery->where('order_type', $this->filterOrderType);
+        // Apply order type filter if selected
+        if (!empty($this->filterOrderType)) {
+            $baseQuery->where('order_type', $this->filterOrderType);
+        }
+
+        // Apply waiter filter at DB level
+        if ($this->filterWaiter) {
+            $baseQuery->where('waiter_id', $this->filterWaiter);
+        }
+
+        // Get counts for both tabs using efficient count queries
+        $localCountQuery = (clone $baseQuery)->where('placed_via', 'pos');
+        $onlineCountQuery = (clone $baseQuery)->where('placed_via', 'shop');
+        $localCount = $localCountQuery->count();
+        $onlineCount = $onlineCountQuery->count();
+        $totalSalesCount = $localCount + $onlineCount;
+
+        // Apply tab filter at DB level
+        $tabQuery = (clone $baseQuery)->where('placed_via', $this->activeTab === 'local' ? 'pos' : 'shop');
+
+        // Get status counts for the current tab (single query with groupBy)
+        $statusCounts = Order::query()
+            ->where('status', '<>', 'draft')
+            ->whereBetween('orders.date_time', [$start, $end])
+            ->where('placed_via', $this->activeTab === 'local' ? 'pos' : 'shop')
+            ->when($this->filterOrderType, fn($q) => $q->where('order_type', $this->filterOrderType))
+            ->when($this->filterWaiter, fn($q) => $q->where('waiter_id', $this->filterWaiter))
+            ->selectRaw('status, COUNT(*) as count')
+            ->groupBy('status')
+            ->pluck('count', 'status');
+
+        $kotCount = $statusCounts->get('kot', 0);
+        $billedCount = $statusCounts->get('billed', 0);
+        $paymentDueCount = $statusCounts->get('payment_due', 0);
+        $paidOrdersCount = $statusCounts->get('paid', 0);
+        $canceledOrdersCount = $statusCounts->get('canceled', 0);
+        $outDeliveryOrdersCount = $statusCounts->get('out_for_delivery', 0);
+        $deliveredOrdersCount = $statusCounts->get('delivered', 0);
+
+        // Apply status filter at DB level
+        if (!empty($this->filterOrders)) {
+            $tabQuery->where('status', $this->filterOrders);
+        }
+
+        // Paginate instead of loading all into memory
+        $orders = $tabQuery->paginate(20);
+
+        $receiptSettings = restaurant()->receiptSetting;
+
+        return view('livewire.order.orders', [
+            'orders' => $orders,
+            'kotCount' => $kotCount,
+            'billedCount' => $billedCount,
+            'paymentDueCount' => $paymentDueCount,
+            'paidOrdersCount' => $paidOrdersCount,
+            'canceledOrdersCount' => $canceledOrdersCount,
+            'outDeliveryOrdersCount' => $outDeliveryOrdersCount,
+            'deliveredOrdersCount' => $deliveredOrdersCount,
+            'receiptSettings' => $receiptSettings,
+            'orderID' => $this->orderID,
+            'localCount' => $localCount,
+            'onlineCount' => $onlineCount,
+            'totalSalesCount' => $totalSalesCount,
+        ]);
     }
-
-    // Get all filtered orders
-    $orders = $ordersQuery->get();
-
-    $totalSalesCount = $orders->count();
-
-    // Separate local vs online
-    $localOrders = $orders->where('placed_via', 'pos');
-    $onlineOrders = $orders->where('placed_via', 'shop');
-
-    // Pick current tab orders
-    $orderBase = $this->activeTab === 'local' ? $localOrders : $onlineOrders;
-
-    // Status-based subsets
-    $kotCount = $orderBase->where('status', 'kot');
-    $billedCount = $orderBase->where('status', 'billed');
-    $paymentDue = $orderBase->where('status', 'payment_due');
-    $paidOrders = $orderBase->where('status', 'paid');
-    $canceledOrders = $orderBase->where('status', 'canceled');
-    $outDeliveryOrders = $orderBase->where('status', 'out_for_delivery');
-    $deliveredOrders = $orderBase->where('status', 'delivered');
-
-    // Apply filter for specific order status (and keep within current tab)
-    switch ($this->filterOrders) {
-        case 'kot':
-            $orderList = $kotCount;
-            break;
-        case 'billed':
-            $orderList = $billedCount;
-            break;
-        case 'payment_due':
-            $orderList = $paymentDue;
-            break;
-        case 'paid':
-            $orderList = $paidOrders;
-            break;
-        case 'canceled':
-            $orderList = $canceledOrders;
-            break;
-        case 'out_for_delivery':
-            $orderList = $outDeliveryOrders;
-            break;
-        case 'delivered':
-            $orderList = $deliveredOrders;
-            break;
-        default:
-            // ✅ FIXED: use $orderBase instead of $orders (this keeps tab filtering)
-            $orderList = $orderBase;
-            break;
-    }
-
-    // Apply waiter filter if needed
-    if ($this->filterWaiter) {
-        $orderList = $orderList->filter(function ($order) {
-            return $order->waiter_id == $this->filterWaiter;
-        });
-    }
-
-    $receiptSettings = restaurant()->receiptSetting;
-
-    return view('livewire.order.orders', [
-        'orders' => $orderList,
-        'kotCount' => $kotCount->count(),
-        'billedCount' => $billedCount->count(),
-        'paymentDueCount' => $paymentDue->count(),
-        'paidOrdersCount' => $paidOrders->count(),
-        'canceledOrdersCount' => $canceledOrders->count(),
-        'outDeliveryOrdersCount' => $outDeliveryOrders->count(),
-        'deliveredOrdersCount' => $deliveredOrders->count(),
-        'receiptSettings' => $receiptSettings,
-        'orderID' => $this->orderID,
-        'localCount' => $localOrders->count(),
-        'onlineCount' => $onlineOrders->count(),
-
-         'totalSalesCount' => $totalSalesCount,
-    ]);
-}
 
 }
