@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-0 sm:p-8" wire:poll.1000ms>
+<div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-0 sm:p-8" wire:poll.5s>
     @if($status == 'billed')
         <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-0 sm:p-8">
             <div class="w-full max-w-2xl flex flex-col items-center justify-center py-24">

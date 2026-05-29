@@ -52,9 +52,7 @@ class MenuItem extends BaseModel
         'item_photo_url',
     ];
 
-    protected $with = ['translations', 'measurement'];
-
-    public static function calculateItemTaxes($itemPrice, $taxes = [], $inclusive)
+    public static function calculateItemTaxes($itemPrice, $taxes, $inclusive)
     {
         // Ensure $taxes is a collection
         if (is_array($taxes)) {

@@ -95,13 +95,13 @@
     <div class="flex flex-col my-4 px-4">
         <div class="mb-6 lg:flex lg:justify-between">
             <ul class="inline-flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 mb-4">
-                <li class="me-2" wire:key='area-fltr-{{ microtime() }}'>
+                <li class="me-2" wire:key='area-fltr-all'>
                     <a href="javascript:;" wire:click="$set('areaID', null)"
                     @class(['inline-block px-4 py-3 rounded-lg', 'text-skin-base dark:bg-skin-base/[.1] bg-skin-base/[.2]' => (is_null($areaID)), 'hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' => (!is_null($areaID))]) >@lang('modules.table.allAreas')</a>
                 </li>
 
                 @foreach ($areas as $item)
-                    <li class="me-2" wire:key='area-fltr-{{ $item->id.microtime() }}'>
+                    <li class="me-2" wire:key='area-fltr-{{ $item->id }}'>
                         <a href="javascript:;" wire:click="$set('areaID', '{{ $item->id }}')"
                             @class(['inline-block px-4 py-3 rounded-lg', 'text-skin-base dark:bg-skin-base/[.1] bg-skin-base/[.2]' => ($areaID == $item->id), 'hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' => ($areaID != $item->id)]) >
                             {{ $item->area_name }}
@@ -137,7 +137,7 @@
         <!-- Card Section -->
         <div class="space-y-8">
             @foreach ($tables as $area)
-                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-{{ $area->id . microtime() }}'>
+                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-{{ $area->id }}'>
                     <h3 class="f-15 font-medium inline-flex gap-2 items-center dark:text-neutral-200">{{ $area->area_name }}
                         <span class="px-2 py-1 text-sm rounded bg-slate-100 border-gray-300 border text-gray-800 ">{{ $area->tables->count() }} @lang('modules.table.table')</span>
                     </h3>
@@ -148,7 +148,7 @@
                             <div class="relative grid grid-cols-6 gap-2 p-4">
                                 @foreach ($area->tables as $item)
                                     <x-restaurant-table
-                                        wire:key='table-{{ $item->id . microtime() }}'
+                                        wire:key='table-{{ $item->id }}'
                                         wire:click='showTableOrder({{ $item->id }})'
                                         :shape="$item->seating_capacity >= 4 ? 'rectangle' : 'circle'"
                                         :seats="$item->seating_capacity"
@@ -164,7 +164,7 @@
                     @elseif($viewType === 'grid')
                     <div class="grid grid-cols-8 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         @foreach ($area->tables as $item)
-                            <div wire:key='table-{{ $item->id . microtime() }}'
+                            <div wire:key='table-{{ $item->id }}'
                                 wire:click='showTableOrder({{ $item->id }})'
                                 @class([
                                     'aspect-square rounded-lg p-2 cursor-pointer flex flex-col items-center justify-center transition-all transform hover:scale-105',
@@ -187,7 +187,7 @@
                             <a
                             @class(['group flex flex-col gap-2 border shadow-sm rounded-lg hover:shadow-md transition dark:bg-gray-700 dark:border-gray-600 p-3', 'bg-red-50' => ($item->status == 'inactive'), 'bg-white' => ($item->status == 'active')])
                             {{-- wire:click='showEditTable({{ $item->id }})' --}}
-                            wire:key='table-{{ $item->id . microtime() }}'
+                            wire:key='table-{{ $item->id }}'
                                 href="javascript:;">
                                 <div class="flex items-center gap-4 justify-between w-full cursor-pointer" @if($item->activeOrder) wire:click='showTableOrderDetail({{ $item->id }})' @else wire:click='showTableOrder({{ $item->id }})' @endif>
                                     <div @class(['p-3 rounded-lg tracking-wide ',

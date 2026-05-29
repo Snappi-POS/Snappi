@@ -133,9 +133,13 @@
             <div class="space-y-4">
                 <div class="grid sm:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4">
                     @foreach ($kots as $item)
-                        @livewire('kot.kot-card', ['kot' => $item, 'kotSettings' => $kotSettings, 'cancelReasons' => $cancelReasons, 'kotPlace' => $kotPlace], key('kot-' . $item->id . microtime()))
+                        @livewire('kot.kot-card', ['kot' => $item, 'kotSettings' => $kotSettings, 'cancelReasons' => $cancelReasons, 'kotPlace' => $kotPlace], key('kot-' . $item->id))
                     @endforeach
                 </div>
+            </div>
+
+            <div class="mt-4">
+                {{ $kots->links() }}
             </div>
 
             <!-- End Card Section -->

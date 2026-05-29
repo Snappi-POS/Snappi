@@ -4,7 +4,6 @@ namespace App\Livewire\WaiterRequest;
 
 use Livewire\Component;
 use App\Models\Area;
-use App\Models\Table;
 use App\Models\WaiterRequest;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -45,16 +44,24 @@ class Tables extends Component
 
     public function render()
     {
-        $query = Area::with(['tables' => function ($query) {
-            return $query->whereHas('activeWaiterRequest');
-        }, 'tables.waiterRequests', 'tables.activeOrder']);
+        $tables = Area::query()
+            ->select('id', 'area_name')
+            ->with(['tables' => function ($query) {
+                $query->select('id', 'area_id', 'table_code', 'available_status', 'status')
+                    ->whereHas('activeWaiterRequest')
+                    ->with([
+                        'activeWaiterRequest:id,table_id,created_at',
+                        'activeOrder:id,table_id,waiter_id,status',
+                        'activeOrder.waiter:id,name',
+                    ]);
+            }])
+            ->get();
 
-        $query = $query->get();
-
+        $areas = Area::query()->select('id', 'area_name')->orderBy('area_name')->get();
 
         return view('livewire.waiter-request.tables', [
-            'tables' => $query,
-            'areas' => Area::get()
+            'tables' => $tables,
+            'areas' => $areas
         ]);
     }
 }

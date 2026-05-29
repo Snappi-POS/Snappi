@@ -15,7 +15,7 @@
                                     @lang('modules.order.orderNumber') #{{ $order->order_number }}
 
                                 <div class="flex items-center flex-1 text-xs text-gray-500">
-                                    {{ $order->items->count() }} @lang('modules.menu.item') | {{ $order->date_time->timezone($restaurant->timezone)->translatedFormat('M d, Y H:i A') }}
+                                    {{ $order->items_count }} @lang('modules.menu.item') | {{ $order->date_time->timezone($restaurant->timezone)->translatedFormat('M d, Y H:i A') }}
                                 </div>
                             </div>
                         </div>
@@ -47,4 +47,10 @@
         </li>
         @endforelse
     </ul>
+
+    @if ($orders->hasPages())
+        <div class="mt-4">
+            {{ $orders->links() }}
+        </div>
+    @endif
 </div>

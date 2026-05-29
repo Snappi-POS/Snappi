@@ -11,11 +11,15 @@ class TodayPaymentMethodEarnings extends Component
 
     public function render()
     {
+        $start = now()->startOfDay();
+        $end = now()->endOfDay();
+
         $paymentMethods = Payment::where('payment_method', '<>', 'due')
             ->select('payment_method', DB::raw('SUM(amount) as total_amount'))
-            ->whereDate('created_at', today())
+            ->whereBetween('created_at', [$start, $end])
             ->groupBy('payment_method')
-            ->get()->sortBy('total_amount', SORT_REGULAR, true);
+            ->orderByDesc('total_amount')
+            ->get();
 
         return view('livewire.dashboard.today-payment-method-earnings', ['paymentMethods' => $paymentMethods]);
     }

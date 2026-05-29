@@ -16,8 +16,6 @@ class ModifierGroup extends BaseModel
 
     protected $guarded = ['id'];
 
-    protected $with = ['translations'];
-
     public function translations(): HasMany
     {
         return $this->hasMany(ModifierGroupTranslation::class, 'modifier_group_id');

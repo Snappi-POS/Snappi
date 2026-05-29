@@ -13,10 +13,15 @@ class RestaurantCount extends Component
     
     public function mount()
     {
-        $this->orderCount = Restaurant::whereDate('restaurants.created_at', '>=', now()->startOfDay()->toDateTimeString())->whereDate('restaurants.created_at', '<=', now()->endOfDay()->toDateTimeString())
+        $todayStart = now()->startOfDay();
+        $todayEnd = now()->endOfDay();
+        $yesterdayStart = now()->subDay()->startOfDay();
+        $yesterdayEnd = now()->subDay()->endOfDay();
+
+        $this->orderCount = Restaurant::whereBetween('restaurants.created_at', [$todayStart, $todayEnd])
             ->count();
         
-        $yesterdayCount = Restaurant::whereDate('restaurants.created_at', '>=', now()->subDay()->startOfDay()->toDateTimeString())->whereDate('restaurants.created_at', '<=', now()->subDay()->endOfDay()->toDateTimeString())
+        $yesterdayCount = Restaurant::whereBetween('restaurants.created_at', [$yesterdayStart, $yesterdayEnd])
             ->count();
 
         $orderDifference = ($this->orderCount - $yesterdayCount);

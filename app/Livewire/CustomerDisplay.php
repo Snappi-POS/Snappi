@@ -21,12 +21,30 @@ class CustomerDisplay extends Component
     public $cashDue = null;
     public $qrCodeImageUrl = null;
 
-    // Poll every 1 second
+    protected function resetDisplayState(): void
+    {
+        $this->orderNumber = null;
+        $this->subTotal = 0;
+        $this->total = 0;
+        $this->discount = 0;
+        $this->orderItems = [];
+        $this->taxes = [];
+        $this->extraCharges = [];
+        $this->tip = 0;
+        $this->deliveryFee = 0;
+        $this->orderType = null;
+        $this->status = 'idle';
+        $this->cashDue = null;
+        $this->qrCodeImageUrl = null;
+    }
+
     public function render()
     {
         $cart = Cache::get('customer_display_cart');
 
-        if ($cart) {
+        if (!$cart) {
+            $this->resetDisplayState();
+        } else {
             $this->orderNumber = $cart['order_number'];
             $this->subTotal = $cart['sub_total'];
             $this->total = $cart['total'];
@@ -40,20 +58,6 @@ class CustomerDisplay extends Component
             $this->status = $cart['status'] ?? 'idle';
             $this->cashDue = $cart['cash_due'] ?? null;
             $this->qrCodeImageUrl = $cart['qr_code_image_url'] ?? null;
-        } else {
-            $this->orderNumber = null;
-            $this->subTotal = 0;
-            $this->total = 0;
-            $this->discount = 0;
-            $this->orderItems = [];
-            $this->taxes = [];
-            $this->extraCharges = [];
-            $this->tip = 0;
-            $this->deliveryFee = 0;
-            $this->orderType = null;
-            $this->status = 'idle';
-            $this->cashDue = null;
-            $this->qrCodeImageUrl = null;
         }
 
         return view('livewire.customer-display');

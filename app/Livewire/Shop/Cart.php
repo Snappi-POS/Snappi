@@ -20,6 +20,7 @@ use App\Models\OrderCharge;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Computed;
 use App\Models\ItemCategory;
 use App\Models\PaypalPayment;
 use App\Models\StripePayment;
@@ -126,7 +127,12 @@ class Cart extends Component
             $this->table = Table::where('hash', $this->tableID)->firstOrFail();
             $restaurant = $this->table->branch->restaurant;
 
-            $fetchActiveOrder = Order::where('table_id', $this->table->id)->where('status', 'kot')->whereDate('date_time', '=', now($restaurant->timezone)->toDateString())->first();
+            $fetchActiveOrder = Order::where('table_id', $this->table->id)
+                ->where('status', 'kot')
+                ->whereBetween('date_time', [
+                    now($restaurant->timezone)->startOfDay(),
+                    now($restaurant->timezone)->endOfDay(),
+                ])->first();
 
             if ($fetchActiveOrder) {
                 $this->orderID = $fetchActiveOrder->id;
@@ -1048,14 +1054,15 @@ class Cart extends Component
         $this->itemModifiersSelected[$keyId] = Arr::flatten($modifierIds);
 
         $modifierTotal = collect($this->itemModifiersSelected[$keyId])
-            ->sum(fn($modifierId) => $this->getModifierOptionsProperty()[$modifierId]->price);
+            ->sum(fn($modifierId) => $this->modifierOptions[$modifierId]->price ?? 0);
 
         $this->orderItemModifiersPrice[$keyId] = (1 * (isset($this->itemModifiersSelected[$keyId]) ? $modifierTotal : 0));
 
         $this->syncCart($keyId);
     }
 
-    public function getModifierOptionsProperty()
+    #[Computed]
+    public function modifierOptions()
     {
         return ModifierOption::whereIn('id', collect($this->itemModifiersSelected)->flatten()->all())->get()->keyBy('id');
     }

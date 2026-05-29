@@ -11,27 +11,27 @@ class WeeklySalesChart extends Component
 
     public function render()
     {
-        $startOfMonth = now()->startOfMonth()->startOfDay()->toDateTimeString();
-        $tillToday = now()->endOfDay()->toDateTimeString();
+        $startOfMonth = now()->startOfMonth()->startOfDay();
+        $tillToday = now()->endOfDay();
 
-        $startOfLastMonth = now()->subMonth()->startOfMonth()->startOfDay()->toDateTimeString();
-        $endOfLastMonth = now()->subMonth()->endOfMonth()->endOfDay()->toDateTimeString();
+        $startOfLastMonth = now()->subMonth()->startOfMonth()->startOfDay();
+        $endOfLastMonth = now()->subMonth()->endOfMonth()->endOfDay();
 
         $salesData = Order::select(
             DB::raw('DATE(date_time) as date'),
             DB::raw('SUM(total) as total_sales')
         )
-            ->whereDate('orders.date_time', '>=', $startOfMonth)->whereDate('orders.date_time', '<=', $tillToday)
+            ->whereBetween('orders.date_time', [$startOfMonth, $tillToday])
             ->where('status', 'paid')
             ->groupBy('date')
             ->orderBy('date', 'asc')
             ->get();
 
-        $monthlyEarnings = Order::whereDate('orders.date_time', '>=', $startOfMonth)->whereDate('orders.date_time', '<=', $tillToday)
+        $monthlyEarnings = Order::whereBetween('orders.date_time', [$startOfMonth, $tillToday])
             ->where('status', 'paid')
             ->sum('total');
 
-        $previousEarnings = Order::whereDate('orders.date_time', '>=', $startOfLastMonth)->whereDate('orders.date_time', '<=', $endOfLastMonth)
+        $previousEarnings = Order::whereBetween('orders.date_time', [$startOfLastMonth, $endOfLastMonth])
             ->where('status', 'paid')
             ->sum('total');
 

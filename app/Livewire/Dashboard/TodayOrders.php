@@ -15,15 +15,16 @@ class TodayOrders extends Component
 
     public function render()
     {
-        $count = Order::whereDate('orders.date_time', '>=', now()->startOfDay()->toDateTimeString())
-            ->whereDate('orders.date_time', '<=', now()->endOfDay()->toDateTimeString())
+        $start = now()->startOfDay();
+        $end = now()->endOfDay();
+
+        $count = Order::whereBetween('orders.date_time', [$start, $end])
             ->where('status', '<>', 'canceled')
             ->where('status', '<>', 'draft')
             ->count();
 
         $todayKotCount = Kot::join('orders', 'kots.order_id', '=', 'orders.id')
-            ->whereDate('kots.created_at', '>=', now()->startOfDay()->toDateTimeString())
-            ->whereDate('kots.created_at', '<=', now()->endOfDay()->toDateTimeString())
+            ->whereBetween('kots.created_at', [$start, $end])
             ->where('orders.status', '<>', 'canceled')
             ->where('orders.status', '<>', 'draft')
             ->count();

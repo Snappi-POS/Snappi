@@ -3,11 +3,17 @@
 
     <div class="grid grid-cols-1 gap-3 sm:gap-4">
         @forelse ($orders as $item)
-            <x-order.order-card :order='$item' wire:key='order-{{ $item->id . microtime() }}' />
+            <x-order.order-card :order='$item' wire:key='order-{{ $item->id }}' />
         @empty
             <div class="group flex justify-center gap-3 items-center border h-36 font-medium bg-white shadow-sm rounded-lg hover:shadow-md transition dark:bg-gray-700 dark:border-gray-600 p-3 dark:text-gray-400">
                @lang('messages.waitingTodayOrder')
             </div>
         @endforelse
     </div>
+
+    @if ($orders->hasPages())
+        <div class="mt-4">
+            {{ $orders->links() }}
+        </div>
+    @endif
 </div>

@@ -15,7 +15,7 @@
         <div class="space-y-8">
             @foreach ($tables as $area)
 
-                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-{{ $area->id . microtime() }}'>
+                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-{{ $area->id }}'>
                     <h3 class="f-15 font-medium inline-flex gap-2 items-center dark:text-neutral-200">{{ $area->area_name }}
                         <span class="px-2 py-1 text-sm rounded bg-slate-100 border-gray-300 border text-gray-800 ">{{ $area->tables->count() }} @lang('modules.table.table')</span>
                     </h3>
@@ -26,7 +26,7 @@
                         <a
                         @class(['group flex flex-col gap-2 border shadow-sm rounded-lg hover:shadow-md transition dark:bg-gray-700 dark:border-gray-600 p-3', 'bg-red-50' => ($item->status == 'inactive'), 'bg-white' => ($item->status == 'active')])
            
-                        wire:key='table-{{ $item->id . microtime() }}'
+                        wire:key='table-{{ $item->id }}'
                             href="javascript:;">
                             <div class="flex items-center gap-4 justify-between w-full cursor-pointer" wire:click='showTableOrder({{ $item->id }})'>
                                 <div @class(['p-3 rounded-lg tracking-wide ',

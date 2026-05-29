@@ -10,8 +10,10 @@ class TodayReservations extends Component
 
     public function render()
     {
-        $count = Reservation::whereDate('reservation_date_time', '>=', now(timezone())->startOfDay()->toDateTimeString())
-            ->whereDate('reservation_date_time', '<=', now(timezone())->endOfDay()->toDateTimeString())
+        $start = now(timezone())->startOfDay();
+        $end = now(timezone())->endOfDay();
+
+        $count = Reservation::whereBetween('reservation_date_time', [$start, $end])
             ->where('reservation_status', 'Confirmed')
             ->whereNull('table_id')
             ->count();

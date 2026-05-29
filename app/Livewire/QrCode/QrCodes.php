@@ -48,17 +48,20 @@ class QrCodes extends Component
 
     public function render()
     {
-        $query = Area::with('tables');
+        $query = Area::query()->select('id', 'area_name')->with(['tables' => function ($query) {
+            $query->select('id', 'area_id', 'branch_id', 'table_code', 'available_status', 'status', 'seating_capacity', 'hash');
+        }]);
 
         if (!is_null($this->areaID)) {
             $query = $query->where('id', $this->areaID);
         }
 
-        $query = $query->get();
+        $tables = $query->get();
+        $areas = Area::query()->select('id', 'area_name')->orderBy('area_name')->get();
 
         return view('livewire.qr-code.qr-codes', [
-            'tables' => $query,
-            'areas' => Area::get()
+            'tables' => $tables,
+            'areas' => $areas
         ]);
     }
 }

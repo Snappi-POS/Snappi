@@ -11,13 +11,18 @@ class TodayTableEarnings extends Component
 
     public function render()
     {
+        $start = now()->startOfDay();
+        $end = now()->endOfDay();
+
         $orders = Order::select('table_id', DB::raw('SUM(total) as total_price'))
             ->with('table')
             ->whereNotNull('table_id')
-            ->whereDate('date_time', today())
-            ->groupBy('table_id')
+            ->whereBetween('date_time', [$start, $end])
             ->where('status', 'paid')
-            ->get()->sortBy('total_price', SORT_REGULAR, true)->splice(0, 5);
+            ->groupBy('table_id')
+            ->orderByDesc('total_price')
+            ->limit(5)
+            ->get();
 
         return view('livewire.dashboard.today-table-earnings', [
             'orders' => $orders

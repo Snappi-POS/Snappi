@@ -69,22 +69,28 @@ class Tables extends Component
 
     public function render()
     {
-        $query = Area::with(['tables' => function ($query) {
-            if (!is_null($this->filterAvailable)) {
-                return $query->where('available_status', $this->filterAvailable);
-            }
-        }, 'tables.activeOrder']);
+        $query = Area::query()->select('id', 'area_name')->with(['tables' => function ($query) {
+            $query->select('id', 'area_id', 'table_code', 'available_status', 'status', 'seating_capacity')
+                ->when(!is_null($this->filterAvailable), function ($tableQuery) {
+                    $tableQuery->where('available_status', $this->filterAvailable);
+                })
+                ->with([
+                    'activeOrder:id,table_id,status',
+                    'activeOrder.kot:id,order_id',
+                ]);
+        }]);
 
         if (!is_null($this->areaID)) {
             $query = $query->where('id', $this->areaID);
         }
 
-        $query = $query->get();
+        $tables = $query->get();
+        $areas = Area::query()->select('id', 'area_name')->orderBy('area_name')->get();
 
 
         return view('livewire.table.tables', [
-            'tables' => $query,
-            'areas' => Area::get()
+            'tables' => $tables,
+            'areas' => $areas
         ]);
     }
 

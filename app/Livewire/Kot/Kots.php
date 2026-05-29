@@ -6,12 +6,17 @@ use Carbon\Carbon;
 use App\Models\Kot;
 use Livewire\Component;
 use App\Models\KotSetting;
+use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Livewire\WithoutUrlPagination;
 use App\Models\KotCancelReason;
 use App\Models\KotPlace;
+use Illuminate\Database\Eloquent\Builder;
 
 class Kots extends Component
 {
+    use WithPagination;
+    use WithoutUrlPagination;
 
     protected $listeners = ['refreshKots' => '$refresh'];
     public $filterOrders;
@@ -26,6 +31,7 @@ class Kots extends Component
     public $cancelReason;
     public $selectedCancelKotId;
     public $kotPlace;
+    public $perPage = 24;
 
     public function mount()
     {
@@ -113,6 +119,12 @@ class Kots extends Component
     public function updatedDateRangeType($value)
     {
         cookie()->queue(cookie('kots_date_range_type', $value, 60 * 24 * 30)); // 30 days
+        $this->resetPage();
+    }
+
+    public function updatedFilterOrders(): void
+    {
+        $this->resetPage();
     }
 
     public function deleteKot($id)
@@ -154,98 +166,105 @@ class Kots extends Component
         $start = Carbon::createFromFormat('m/d/Y', $this->startDate)->startOfDay()->toDateTimeString();
         $end = Carbon::createFromFormat('m/d/Y', $this->endDate)->endOfDay()->toDateTimeString();
 
-        if (in_array('Kitchen', restaurant_modules())) {
-            $kots = Kot::withCount(['items' => function ($query) {
-                $query->whereHas('menuItem', function ($q) {
-                    $q->where('kitchen_place_id', $this->kotPlace?->id)
-                        ->orWhereNull('kitchen_place_id');
-                });
-            }])->orderBy('id', 'desc')
-                ->join('orders', 'kots.order_id', '=', 'orders.id')
-                ->whereDate('kots.created_at', '>=', $start)->whereDate('kots.created_at', '<=', $end)
-                ->where('orders.status', '<>', 'draft')
-                ->whereHas('items.menuItem', function ($q) {
-                    $q->where('kot_place_id', $this->kotPlace?->id);
-                })
-                ->with([
-                    'items' => function ($query) {
-                        $query->whereHas('menuItem', function ($q) {
-                            $q->where('kot_place_id', $this->kotPlace?->id);
-                        })->with(['menuItem', 'menuItemVariation', 'modifierOptions']);
-                    },
-                    'items.menuItem',
-                    'order',
-                    'order.waiter',
-                    'order.table',
-                    'items.menuItemVariation',
-                    'items.modifierOptions',
-                    'cancelReason'
-                ])
-                ->get();
-        } else {
-            $kots = Kot::withCount('items')->orderBy('id', 'desc')
-                ->join('orders', 'kots.order_id', '=', 'orders.id')
-                ->whereDate('kots.created_at', '>=', $start)->whereDate('kots.created_at', '<=', $end)
-                ->where('orders.status', '<>', 'draft')
-                ->with('items', 'items.menuItem', 'order', 'order.waiter', 'order.table', 'items.menuItemVariation', 'items.modifierOptions', 'cancelReason')
-                ->get();
-        }
+        $countQuery = $this->baseKotQuery($start, $end);
+        $inKitchenCount = $this->kotSettings->default_status == 'pending'
+            ? (clone $countQuery)->where('status', 'in_kitchen')->count()
+            : (clone $countQuery)->whereIn('status', ['in_kitchen', 'pending_confirmation'])->count();
+        $foodReadyCount = (clone $countQuery)->where('status', 'food_ready')->count();
+        $pendingConfirmationCount = (clone $countQuery)->where('status', 'pending_confirmation')->count();
+        $cancelledCount = (clone $countQuery)->where('status', 'cancelled')->count();
 
-        if ($this->kotSettings->default_status == 'pending') {
-            $inKitchen = $kots->filter(function ($order) {
-                return $order->status == 'in_kitchen';
-            });
-        } else {
-            $inKitchen = $kots->filter(function ($order) {
-                return $order->status == 'in_kitchen' || $order->status == 'pending_confirmation';
-            });
-        }
-
-        $foodReady = $kots->filter(function ($order) {
-            return $order->status == 'food_ready';
-        });
-
-        $pendingConfirmation = $kots->filter(function ($order) {
-            return $order->status == 'pending_confirmation';
-        });
-
-        $cancelled = $kots->filter(function ($order) {
-            return $order->status == 'cancelled';
-        });
-
-        switch ($this->filterOrders) {
-            case 'in_kitchen':
-                $kotList = $inKitchen;
-                break;
-
-            case 'food_ready':
-                $kotList = $foodReady;
-                break;
-
-            case 'pending_confirmation':
-                $kotList = $pendingConfirmation;
-                break;
-
-            case 'cancelled':
-                $kotList = $cancelled;
-                break;
-
-            default:
-                $kotList = $kots;
-                break;
-        }
+        $kotList = $this->kotQuery($start, $end);
+        $this->applySelectedFilter($kotList);
+        $kots = $kotList->paginate($this->perPage);
 
         $kotSettings = $this->kotSettings;
         $cancelReasons = $this->cancelReasons;
 
         return view('livewire.kot.kots', [
-            'kots' => $kotList,
-            'inKitchenCount' => count($inKitchen),
-            'foodReadyCount' => count($foodReady),
-            'pendingConfirmationCount' => count($pendingConfirmation),
-            'cancelledCount' => count($cancelled),
+            'kots' => $kots,
+            'inKitchenCount' => $inKitchenCount,
+            'foodReadyCount' => $foodReadyCount,
+            'pendingConfirmationCount' => $pendingConfirmationCount,
+            'cancelledCount' => $cancelledCount,
             'kotSettings' => $kotSettings,
             'cancelReasons' => $cancelReasons,
         ]);
+    }
+
+    private function baseKotQuery(string $start, string $end): Builder
+    {
+        $query = Kot::query()
+            ->whereBetween('kots.created_at', [$start, $end])
+            ->whereHas('order', function (Builder $query) {
+                $query->where('status', '<>', 'draft');
+            });
+
+        if (in_array('Kitchen', restaurant_modules())) {
+            $query->whereHas('items.menuItem', function (Builder $query) {
+                $query->where('kot_place_id', $this->kotPlace?->id);
+            });
+        }
+
+        return $query;
+    }
+
+    private function kotQuery(string $start, string $end): Builder
+    {
+        $query = $this->baseKotQuery($start, $end)->orderByDesc('id');
+
+        if (in_array('Kitchen', restaurant_modules())) {
+            return $query->withCount(['items' => function ($query) {
+                $query->whereHas('menuItem', function ($nestedQuery) {
+                    $nestedQuery->where('kitchen_place_id', $this->kotPlace?->id)
+                        ->orWhereNull('kitchen_place_id');
+                });
+            }])->with([
+                'items' => function ($query) {
+                    $query->whereHas('menuItem', function ($nestedQuery) {
+                        $nestedQuery->where('kot_place_id', $this->kotPlace?->id);
+                    })->with(['menuItem', 'menuItemVariation', 'modifierOptions']);
+                },
+                'order',
+                'order.waiter',
+                'order.table',
+                'cancelReason',
+            ]);
+        }
+
+        return $query->withCount('items')->with([
+            'items.menuItem',
+            'items.menuItemVariation',
+            'items.modifierOptions',
+            'order',
+            'order.waiter',
+            'order.table',
+            'cancelReason',
+        ]);
+    }
+
+    private function applySelectedFilter(Builder $query): void
+    {
+        switch ($this->filterOrders) {
+            case 'in_kitchen':
+                if ($this->kotSettings->default_status == 'pending') {
+                    $query->where('status', 'in_kitchen');
+                } else {
+                    $query->whereIn('status', ['in_kitchen', 'pending_confirmation']);
+                }
+                break;
+
+            case 'food_ready':
+                $query->where('status', 'food_ready');
+                break;
+
+            case 'pending_confirmation':
+                $query->where('status', 'pending_confirmation');
+                break;
+
+            case 'cancelled':
+                $query->where('status', 'cancelled');
+                break;
+        }
     }
 }

@@ -10,7 +10,7 @@
     <div class="flex flex-col my-4 px-4">
         <div class="mb-6 lg:flex lg:justify-between">
             <ul class="inline-flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 mb-4">
-                <li class="me-2" wire:key='area-fltr-{{ microtime() }}'>
+                <li class="me-2" wire:key='area-fltr-all'>
                     <a href="javascript:;" wire:click="$set('areaID', null)"
                         @class([
                             'inline-block px-4 py-3 rounded-lg',
@@ -22,7 +22,7 @@
                 </li>
 
                 @foreach ($areas as $item)
-                    <li class="me-2" wire:key='area-fltr-{{ $item->id . microtime() }}'>
+                    <li class="me-2" wire:key='area-fltr-{{ $item->id }}'>
                         <a href="javascript:;" wire:click="$set('areaID', '{{ $item->id }}')"
                             @class([
                                 'inline-block px-4 py-3 rounded-lg',
@@ -69,7 +69,7 @@
         <!-- Card Section -->
         <div class="space-y-8">
             @if (is_null($areaID) && branch()->qRCodeUrl)
-                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-mainqr-{{ microtime() }}'>
+                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-mainqr'>
                     <!-- Card -->
                     <div class="grid sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                         <div class='group flex flex-col gap-3 border shadow-sm rounded-lg hover:shadow-md transition dark:bg-gray-700 dark:border-gray-600 p-3'
@@ -130,7 +130,7 @@
                 </div>
             @endif
             @foreach ($tables as $area)
-                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-{{ $area->id . microtime() }}'>
+                <div class="flex flex-col gap-3 sm:gap-4 space-y-1" wire:key='area-{{ $area->id }}'>
                     <h3 class="f-15 font-medium inline-flex gap-2 items-center dark:text-neutral-200">
                         {{ $area->area_name }}
                         <span
@@ -145,7 +145,7 @@
                                 'group flex flex-col gap-3 border shadow-sm rounded-lg hover:shadow-md transition dark:bg-gray-700 dark:border-gray-600 p-3',
                                 'bg-red-50' => $item->status == 'inactive',
                                 'bg-white' => $item->status == 'active',
-                            ]) wire:key='table-{{ $item->id . microtime() }}'
+                            ]) wire:key='table-{{ $item->id }}'
                                 href="javascript:;">
 
                                 <div class="flex items-center gap-4 justify-between w-full">
